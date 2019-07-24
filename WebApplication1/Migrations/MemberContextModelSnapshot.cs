@@ -3,9 +3,9 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using WebApplication1.Model;
+using SurfProject.Model;
 
-namespace WebApplication1.Migrations
+namespace SurfProject.Migrations
 {
     [DbContext(typeof(MemberContext))]
     partial class MemberContextModelSnapshot : ModelSnapshot
@@ -18,7 +18,7 @@ namespace WebApplication1.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("WebApplication1.Model.Member", b =>
+            modelBuilder.Entity("SurfProject.Model.Member", b =>
                 {
                     b.Property<int>("MemberID")
                         .ValueGeneratedOnAdd()
@@ -66,7 +66,7 @@ namespace WebApplication1.Migrations
                     b.ToTable("Members");
                 });
 
-            modelBuilder.Entity("WebApplication1.Model.SurfAlert", b =>
+            modelBuilder.Entity("SurfProject.Model.SurfAlert", b =>
                 {
                     b.Property<int>("SurfAlertID")
                         .ValueGeneratedOnAdd()

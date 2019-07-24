@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication1.Model
+namespace SurfProject.Model
 {
     public class DaysPickedAttribute : ValidationAttribute, IClientModelValidator
     {

@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Newtonsoft.Json;
-using WebApplication1.Model;
+using SurfProject.Model;
 
-namespace WebApplication1.Pages
+namespace SurfProject.Pages
 {
     public class MarineAPIModel : PageModel
     {

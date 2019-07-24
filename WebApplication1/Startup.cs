@@ -10,9 +10,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using WebApplication1.Model;
+using SurfProject.Model;
 
-namespace WebApplication1
+namespace SurfProject
 {
     public class Startup
     {
