@@ -1,0 +1,48 @@
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification 
+for details on configuring this project to bundle and minify static web assets. */
+body {
+    padding-top: 50px;
+    padding-bottom: 20px;
+}
+
+/* Wrapping element */
+/* Set some basic padding to keep content from hitting the edges */
+.body-content {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+
+
+/*My added css starts here*/
+
+.form {
+    max-width: 500px;
+    margin: 0 auto;
+}
+
+
+.form-control {
+    border: 2px black;
+}
+
+
+.input-validation-error {
+    border: 3px red;
+    background: pink;
+}
+
+.field-validation-error {
+    font-style: italic;
+    color: darkred;
+}
+
+
+.container {
+    border: 3px black;
+    background-color: lightblue;
+}
+
+.greeting {
+    text-align: center;
+}

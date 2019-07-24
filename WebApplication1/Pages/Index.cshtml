@@ -1,0 +1,223 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<fieldset>
+
+    <legend class="greeting">Please fill in the form - all fields are required</legend>
+
+    <form method="post" class="form">
+
+        <div class="form-horizontal">
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.FirstName class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.FirstName class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.FirstName></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.LastName class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.LastName class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.LastName></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.Street class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.Street class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.Street></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.Town class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.Town class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.Town></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.Email class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.Email class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.Email></span>
+
+            </div>
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.EmailConfirm class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.EmailConfirm class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.EmailConfirm></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.PhoneNumber class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.PhoneNumber class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.PhoneNumber></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.AltNumber class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.AltNumber class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.AltNumber></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=Member.IsMondayChecked class="daychecker" />
+
+                    <label asp-for=Member.IsMondayChecked></label>
+
+                </div>
+
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=Member.IsTuesdayChecked class="daychecker" />
+
+                    <label asp-for=Member.IsTuesdayChecked></label>
+
+                </div>
+
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=Member.IsWednesdayChecked class="daychecker" />
+
+                    <label asp-for=Member.IsWednesdayChecked></label>
+
+                </div>
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=Member.IsThursdayChecked class="daychecker" />
+
+                    <label asp-for=Member.IsThursdayChecked></label>
+
+                </div>
+
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=Member.IsFridayChecked class="daychecker" />
+
+                    <label asp-for=Member.IsFridayChecked></label>
+
+                </div>
+
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=Member.IsSaturdayChecked class="daychecker" />
+
+                    <label asp-for=Member.IsSaturdayChecked></label>
+
+                </div>
+
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=Member.IsSundayChecked class="daychecker" />
+
+                    <label asp-for=Member.IsSundayChecked></label>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.IsMondayChecked></span>
+
+            </div>
+
+            <button type="submit">Press Me</button>
+
+        </div>
+
+            </form>
+
+            </fieldset>

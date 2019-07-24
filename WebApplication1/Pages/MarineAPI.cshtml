@@ -1,0 +1,32 @@
+﻿@page
+@model WebApplication1.Pages.MarineAPIModel
+@{
+    ViewData["Title"] = "MarineAPI";
+}
+
+<h2>Check the weather for your city - Enter location code below</h2>
+
+
+<form method="post">
+    <label asp-for=Name></label>
+    <input asp-for=Name />
+
+    <button type="submit">Get Weather</button>
+</form>
+
+
+@if (Model.Rootobject.Count > 0)
+{
+
+    <h4>The current temperature is @Model.Rootobject[0].condition.temperature degrees Celsius</h4>
+
+    <body>
+        Current wind speed is 
+    </body>
+}
+else
+{
+    <h3>Check the weather for your city</h3>
+}
+
+
