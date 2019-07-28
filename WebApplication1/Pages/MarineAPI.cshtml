@@ -15,10 +15,11 @@
 </form>
 
 
-@if (Model.Rootobject.Count > 0)
+@if (Model.StringResult != null)
 {
 
-    <h4>The current temperature is @Model.Rootobject[0].condition.temperature degrees Celsius</h4>
+    <h4>The current temperature is @Model.RootObjectList[0].condition.temperature degrees Celsius</h4>
+
 
     <body>
         Current wind speed is 

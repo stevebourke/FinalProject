@@ -24,9 +24,9 @@ namespace SurfProject.Pages
 
         public string Name { get; set; }
 
-        public List<Rootobject> Rootobject { get; set; }
+        public List<Rootobject> RootObjectList { get; set; }
 
-
+        public string StringResult { get; set; }
 
 
         public async Task<IActionResult> OnGetAsync()
@@ -35,8 +35,8 @@ namespace SurfProject.Pages
         }
 
 
-        //Tha name of the city which was posted is fed into the address, along with
-        //the key we were given from openweathermap, and a call for metric values
+        //Tha name of the location which was posted is fed into the address, along with
+        //the key we were given from magicseaweed
 
         public async Task<IActionResult> OnPostAsync(string name)
         {
@@ -49,13 +49,13 @@ namespace SurfProject.Pages
                 HttpResponseMessage response = await client.GetAsync($"3520cfbae15bc809791873a0089e10bd/forecast/?spot_id=" + name);
                 response.EnsureSuccessStatusCode();
 
-                var stringResult = await response.Content.ReadAsStringAsync();
-                List<Rootobject>Rootobject  = JsonConvert.DeserializeObject<List<Rootobject>>(stringResult);
+                StringResult = await response.Content.ReadAsStringAsync();
+                RootObjectList  = JsonConvert.DeserializeObject<List<Rootobject>>(StringResult);
                 return Page();
             }
             catch (HttpRequestException httpRequestException)
             {
-                return BadRequest($"Error getting data from openweathermap.org {httpRequestException.Message}");
+                return BadRequest($"Error getting data from magicseaweed.com {httpRequestException.Message}");
             }
 
 

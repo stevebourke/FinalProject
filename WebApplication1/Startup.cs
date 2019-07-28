@@ -35,8 +35,8 @@ namespace SurfProject
 
 
             //This sets up the database context
-            services.AddDbContext<MemberContext>(options =>
-            options.UseSqlServer(Configuration.GetConnectionString("MemberString")));
+            services.AddDbContext<MemberDetailsContext>(options =>
+             options.UseSqlServer(Configuration.GetConnectionString("MemberDetailsString")));
 
             //Add this to handle our API
             services.AddHttpClient();

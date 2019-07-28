@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SurfProject.Model
 {
+
     public class Member
     {
         //Create a unique ID for each member
@@ -68,83 +69,7 @@ namespace SurfProject.Model
         public string EmailConfirm { get; set; }
 
 
-        //Custom validation - it is bound to Monday but will make sure that at least one checkbox is checked
-        [DaysPicked]
-        [Display(Name = "Monday")]
-        public bool IsMondayChecked { get; set; }
-
-
-        [Display(Name = "Tuesday")]
-        public bool IsTuesdayChecked { get; set; }
-
-
-        [Display(Name = "Wednesday")]
-        public bool IsWednesdayChecked { get; set; }
-
-
-        [Display(Name = "Thursday")]
-        public bool IsThursdayChecked { get; set; }
-
-
-        [Display(Name = "Friday")]
-        public bool IsFridayChecked { get; set; }
-
-
-        [Display(Name = "Saturday")]
-        public bool IsSaturdayChecked { get; set; }
-
-
-        [Display(Name = "Sunday")]
-        public bool IsSundayChecked { get; set; }
-
-
-
-
-        //This will return the number of days selected
-        public int GetNumberOfDays()
-        {
-
-            int count = 0;
-
-            if (IsMondayChecked)
-            {
-                count++;
-            }
-
-            if (IsTuesdayChecked)
-            {
-                count++;
-            }
-
-            if (IsWednesdayChecked)
-            {
-                count++;
-            }
-
-            if (IsThursdayChecked)
-            {
-                count++;
-            }
-            if (IsFridayChecked)
-            {
-                count++;
-            }
-
-            if (IsSaturdayChecked)
-            {
-                count++;
-            }
-
-            if (IsSundayChecked)
-            {
-                count++;
-            }
-
-            return count;
-
-        }
-
-
+       
 
     }
 }

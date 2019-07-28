@@ -12,9 +12,9 @@ namespace SurfProject.Model
 
         protected override ValidationResult IsValid(object IsDayChosen, ValidationContext validationContext)
         {
-            Member member = (Member)validationContext.ObjectInstance;
+            SurfProfile surfProfile = (SurfProfile)validationContext.ObjectInstance;
 
-            if (member.GetNumberOfDays() < 1)
+            if (surfProfile.GetNumberOfDays() < 1)
             {
                 return new ValidationResult(GetErrorMessage());
             }

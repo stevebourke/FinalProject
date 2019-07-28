@@ -6,19 +6,18 @@ using System.Threading.Tasks;
 
 namespace SurfProject.Model
 {
-    public class MemberContext : DbContext
+    public class MemberDetailsContext : DbContext
     {
 
 
-        public MemberContext(DbContextOptions<MemberContext> options)
+        public MemberDetailsContext(DbContextOptions<MemberDetailsContext> options)
             : base(options)
         { }
 
 
         public DbSet<Member> Members { get; set; }
 
-
-        public DbSet<SurfAlert> SurfAlerts { get; set; }
+        public DbSet<SurfProfile> SurfProfiles { get; set; }
 
     }
 }

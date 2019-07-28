@@ -7,8 +7,8 @@ namespace SurfProject.Model
 {
 
     public class Rootobject
-    {  
-        public int timestamp { get; set; }
+    {
+        public int Timestamp { get; set; }
         public int localTimestamp { get; set; }
         public int issueTimestamp { get; set; }
         public int fadedRating { get; set; }
@@ -97,6 +97,7 @@ namespace SurfProject.Model
         public string pressure { get; set; }
         public string sst { get; set; }
     }
+
 
 
 }

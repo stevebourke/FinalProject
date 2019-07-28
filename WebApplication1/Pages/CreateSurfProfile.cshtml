@@ -1,0 +1,83 @@
+﻿@page
+@model SurfProject.Pages.CreateSurfProfileModel
+@{
+    ViewData["Title"] = "CreateSurfProfile";
+}
+
+
+<fieldset>
+
+    <legend class="greeting">Please fill in the form - all fields are required</legend>
+
+    <form method="post" class="form">
+
+        <div class="form-group">
+
+            <div class="col-sm-offset-2">
+
+                <input asp-for=SurfProfile.IsMondayChecked class="daychecker" />
+
+                <label asp-for=SurfProfile.IsMondayChecked></label>
+
+            </div>
+
+
+            <div class="col-sm-offset-2">
+
+                <input asp-for=SurfProfile.IsTuesdayChecked class="daychecker" />
+
+                <label asp-for=SurfProfile.IsTuesdayChecked></label>
+
+            </div>
+
+
+            <div class="col-sm-offset-2">
+
+                <input asp-for=SurfProfile.IsWednesdayChecked class="daychecker" />
+
+                <label asp-for=SurfProfile.IsWednesdayChecked></label>
+
+            </div>
+
+            <div class="col-sm-offset-2">
+
+                <input asp-for=SurfProfile.IsThursdayChecked class="daychecker" />
+
+                <label asp-for=SurfProfile.IsThursdayChecked></label>
+
+            </div>
+
+
+            <div class="col-sm-offset-2">
+
+                <input asp-for=SurfProfile.IsFridayChecked class="daychecker" />
+
+                <label asp-for=SurfProfile.IsFridayChecked></label>
+
+            </div>
+
+
+            <div class="col-sm-offset-2">
+
+                <input asp-for=SurfProfile.IsSaturdayChecked class="daychecker" />
+
+                <label asp-for=SurfProfile.IsSaturdayChecked></label>
+
+            </div>
+
+
+            <div class="col-sm-offset-2">
+
+                <input asp-for=SurfProfile.IsSundayChecked class="daychecker" />
+
+                <label asp-for=SurfProfile.IsSundayChecked></label>
+
+            </div>
+
+            <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.IsMondayChecked></span>
+
+        </div>
+
+    </form>
+
+</fieldset>

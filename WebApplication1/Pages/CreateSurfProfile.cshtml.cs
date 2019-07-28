@@ -8,23 +8,21 @@ using SurfProject.Model;
 
 namespace SurfProject.Pages
 {
-    public class IndexModel : PageModel
+    public class CreateSurfProfileModel : PageModel
     {
+        private readonly SurfProfileContext _db;
 
 
-        private readonly MemberDetailsContext _db;
-
-
-        public IndexModel(MemberDetailsContext db)
+        public CreateSurfProfileModel(SurfProfileContext db)
         {
             _db = db;
         }
 
 
-        //Feed the details back into our member class
+        //Feed the details back into the surf alert class
 
         [BindProperty]
-        public Member Member { get; set; }
+        public SurfProfile SurfProfile { get; set; }
 
 
         public void OnGet()
@@ -35,13 +33,13 @@ namespace SurfProject.Pages
         public async Task<IActionResult> OnPostAsync()
         {
 
-            //If model state is valid pass the details of the applicant into the temporary
-            //database and redirect to the confirmation page
+            //If model state is valid pass the details of the member surf preferences into the
+            //database and redirect the page
             if (ModelState.IsValid)
             {
-                _db.Members.Add(Member);
+                _db.SurfProfiles.Add(SurfProfile);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("MemberConfirmation", new { id = Member.MemberID });
+                return RedirectToPage("Confirmation", new { id = SurfProfile.MemberID });
             }
 
             //If not valid the page will persist until it is filled out correctly
