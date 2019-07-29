@@ -11,70 +11,232 @@
 
     <form method="post" class="form">
 
-        <div class="form-group">
+        <div class="form-horizontal">
 
-            <div class="col-sm-offset-2">
+            <div class="form-group">
 
-                <input asp-for=SurfProfile.IsMondayChecked class="daychecker" />
+                <div class="row">
 
-                <label asp-for=SurfProfile.IsMondayChecked></label>
+                    <label asp-for=SurfProfile.MemberID class="col-sm-3 control-label"></label>
 
-            </div>
+                    <div class="col-sm-9">
+                        <input asp-for=SurfProfile.MemberID class="form-control" />
+                    </div>
 
+                </div>
 
-            <div class="col-sm-offset-2">
-
-                <input asp-for=SurfProfile.IsTuesdayChecked class="daychecker" />
-
-                <label asp-for=SurfProfile.IsTuesdayChecked></label>
-
-            </div>
-
-
-            <div class="col-sm-offset-2">
-
-                <input asp-for=SurfProfile.IsWednesdayChecked class="daychecker" />
-
-                <label asp-for=SurfProfile.IsWednesdayChecked></label>
-
-            </div>
-
-            <div class="col-sm-offset-2">
-
-                <input asp-for=SurfProfile.IsThursdayChecked class="daychecker" />
-
-                <label asp-for=SurfProfile.IsThursdayChecked></label>
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.MemberID></span>
 
             </div>
 
 
-            <div class="col-sm-offset-2">
 
-                <input asp-for=SurfProfile.IsFridayChecked class="daychecker" />
 
-                <label asp-for=SurfProfile.IsFridayChecked></label>
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=SurfProfile.Location class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=SurfProfile.Location class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.Location></span>
+
+            </div>
+
+
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=SurfProfile.MinSwellHeight class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=SurfProfile.MinSwellHeight class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.MinSwellHeight></span>
 
             </div>
 
 
-            <div class="col-sm-offset-2">
 
-                <input asp-for=SurfProfile.IsSaturdayChecked class="daychecker" />
 
-                <label asp-for=SurfProfile.IsSaturdayChecked></label>
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=SurfProfile.MaxSwellHeight class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=SurfProfile.MaxSwellHeight class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.MaxSwellHeight></span>
 
             </div>
 
 
-            <div class="col-sm-offset-2">
 
-                <input asp-for=SurfProfile.IsSundayChecked class="daychecker" />
 
-                <label asp-for=SurfProfile.IsSundayChecked></label>
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=SurfProfile.MinPeriod class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=SurfProfile.MinPeriod class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.MinPeriod></span>
 
             </div>
 
-            <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.IsMondayChecked></span>
+
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=SurfProfile.SwellDirection class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=SurfProfile.SwellDirection class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.SwellDirection></span>
+
+            </div>
+
+
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=SurfProfile.WindDirection class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=SurfProfile.WindDirection class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.WindDirection></span>
+
+            </div>
+
+
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=SurfProfile.WindStrength class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=SurfProfile.WindStrength class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.WindStrength></span>
+
+            </div>
+
+
+
+
+
+            <div class="form-group">
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=SurfProfile.IsMondayChecked class="daychecker" />
+
+                    <label asp-for=SurfProfile.IsMondayChecked></label>
+
+                </div>
+
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=SurfProfile.IsTuesdayChecked class="daychecker" />
+
+                    <label asp-for=SurfProfile.IsTuesdayChecked></label>
+
+                </div>
+
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=SurfProfile.IsWednesdayChecked class="daychecker" />
+
+                    <label asp-for=SurfProfile.IsWednesdayChecked></label>
+
+                </div>
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=SurfProfile.IsThursdayChecked class="daychecker" />
+
+                    <label asp-for=SurfProfile.IsThursdayChecked></label>
+
+                </div>
+
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=SurfProfile.IsFridayChecked class="daychecker" />
+
+                    <label asp-for=SurfProfile.IsFridayChecked></label>
+
+                </div>
+
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=SurfProfile.IsSaturdayChecked class="daychecker" />
+
+                    <label asp-for=SurfProfile.IsSaturdayChecked></label>
+
+                </div>
+
+
+                <div class="col-sm-offset-2">
+
+                    <input asp-for=SurfProfile.IsSundayChecked class="daychecker" />
+
+                    <label asp-for=SurfProfile.IsSundayChecked></label>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.IsMondayChecked></span>
+
+            </div>
+
+
+
+            <button type="submit">Press Me</button>
+
 
         </div>
 

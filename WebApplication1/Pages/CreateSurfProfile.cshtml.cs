@@ -10,10 +10,10 @@ namespace SurfProject.Pages
 {
     public class CreateSurfProfileModel : PageModel
     {
-        private readonly SurfProfileContext _db;
+        private readonly MemberDetailsContext _db;
 
 
-        public CreateSurfProfileModel(SurfProfileContext db)
+        public CreateSurfProfileModel(MemberDetailsContext db)
         {
             _db = db;
         }
@@ -39,7 +39,7 @@ namespace SurfProject.Pages
             {
                 _db.SurfProfiles.Add(SurfProfile);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("Confirmation", new { id = SurfProfile.MemberID });
+                return RedirectToPage("SurfProfileConfirmation", new { id = SurfProfile.MemberID });
             }
 
             //If not valid the page will persist until it is filled out correctly
