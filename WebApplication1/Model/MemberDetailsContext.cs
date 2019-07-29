@@ -19,5 +19,6 @@ namespace SurfProject.Model
 
         public DbSet<SurfProfile> SurfProfiles { get; set; }
 
+
     }
 }

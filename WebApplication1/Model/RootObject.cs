@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -9,93 +10,101 @@ namespace SurfProject.Model
     public class Rootobject
     {
         public int Timestamp { get; set; }
-        public int localTimestamp { get; set; }
-        public int issueTimestamp { get; set; }
-        public int fadedRating { get; set; }
-        public int solidRating { get; set; }
-        public Swell swell { get; set; }
-        public Wind wind { get; set; }
-        public Condition condition { get; set; }
-        public Charts charts { get; set; }
+        public int LocalTimestamp { get; set; }
+        public int IssueTimestamp { get; set; }
+        public int FadedRating { get; set; }
+        public int SolidRating { get; set; }
+        public Swell Swell { get; set; }
+        public Wind Wind { get; set; }
+        public Condition Condition { get; set; }
+        public Charts Charts { get; set; }
     }
 
     public class Swell
     {
-        public float absMinBreakingHeight { get; set; }
-        public float absMaxBreakingHeight { get; set; }
-        public int probability { get; set; }
-        public string unit { get; set; }
-        public int minBreakingHeight { get; set; }
-        public int maxBreakingHeight { get; set; }
-        public Components components { get; set; }
+        [Key]
+        public float AbsMinBreakingHeight { get; set; }
+        public float AbsMaxBreakingHeight { get; set; }
+        public int Probability { get; set; }
+        public string Unit { get; set; }
+        public int MinBreakingHeight { get; set; }
+        public int MaxBreakingHeight { get; set; }
+        public Components Components { get; set; }
     }
 
     public class Components
     {
-        public Combined combined { get; set; }
-        public Primary primary { get; set; }
-        public Secondary secondary { get; set; }
-        public Tertiary tertiary { get; set; }
+        public Combined Combined { get; set; }
+        public Primary Primary { get; set; }
+        public Secondary Secondary { get; set; }
+        public Tertiary Tertiary { get; set; }
     }
 
     public class Combined
     {
-        public float height { get; set; }
-        public int period { get; set; }
-        public float direction { get; set; }
-        public string compassDirection { get; set; }
+        [Key]
+        public float Height { get; set; }
+        public int Period { get; set; }
+        public float Direction { get; set; }
+        public string CompassDirection { get; set; }
     }
 
     public class Primary
     {
-        public float height { get; set; }
-        public int period { get; set; }
-        public float direction { get; set; }
-        public string compassDirection { get; set; }
+        [Key]
+        public float Height { get; set; }
+        public int Period { get; set; }
+        public float Direction { get; set; }
+        public string CompassDirection { get; set; }
     }
 
     public class Secondary
     {
-        public float height { get; set; }
-        public int period { get; set; }
-        public float direction { get; set; }
-        public string compassDirection { get; set; }
+        [Key]
+        public float Height { get; set; }
+        public int Period { get; set; }
+        public float Direction { get; set; }
+        public string CompassDirection { get; set; }
     }
 
     public class Tertiary
     {
-        public float height { get; set; }
-        public int period { get; set; }
-        public float direction { get; set; }
-        public string compassDirection { get; set; }
+        [Key]
+        public float Height { get; set; }
+        public int Period { get; set; }
+        public float Direction { get; set; }
+        public string CompassDirection { get; set; }
     }
 
     public class Wind
     {
-        public int speed { get; set; }
-        public int direction { get; set; }
-        public string compassDirection { get; set; }
-        public int chill { get; set; }
-        public int gusts { get; set; }
-        public string unit { get; set; }
+        [Key]
+        public int Speed { get; set; }
+        public int Direction { get; set; }
+        public string CompassDirection { get; set; }
+        public int Chill { get; set; }
+        public int Gusts { get; set; }
+        public string Unit { get; set; }
     }
 
     public class Condition
     {
-        public int pressure { get; set; }
-        public int temperature { get; set; }
-        public string weather { get; set; }
-        public string unitPressure { get; set; }
-        public string unit { get; set; }
+        [Key]
+        public int Pressure { get; set; }
+        public int Temperature { get; set; }
+        public string Weather { get; set; }
+        public string UnitPressure { get; set; }
+        public string Unit { get; set; }
     }
 
     public class Charts
     {
-        public string swell { get; set; }
-        public string period { get; set; }
-        public string wind { get; set; }
-        public string pressure { get; set; }
-        public string sst { get; set; }
+        [Key]
+        public string Swell { get; set; }
+        public string Period { get; set; }
+        public string Wind { get; set; }
+        public string Pressure { get; set; }
+        public string Sst { get; set; }
     }
 
 

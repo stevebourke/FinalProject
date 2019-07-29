@@ -12,12 +12,14 @@ namespace SurfProject.Pages
 {
     public class MarineAPIModel : PageModel
     {
+
         private readonly IHttpClientFactory _clientFactory;
 
         public MarineAPIModel(IHttpClientFactory clientFactory)
         {
             _clientFactory = clientFactory;
         }
+
 
 
         //The RootObject from the Post class - it will be filled below with the data coming in via the json
@@ -27,6 +29,7 @@ namespace SurfProject.Pages
         public List<Rootobject> RootObjectList { get; set; }
 
         public string StringResult { get; set; }
+
 
 
         public async Task<IActionResult> OnGetAsync()
@@ -52,6 +55,7 @@ namespace SurfProject.Pages
                 StringResult = await response.Content.ReadAsStringAsync();
                 RootObjectList  = JsonConvert.DeserializeObject<List<Rootobject>>(StringResult);
                 return Page();
+            
             }
             catch (HttpRequestException httpRequestException)
             {
