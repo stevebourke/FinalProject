@@ -1,13 +1,15 @@
-﻿using System;
+﻿using Microsoft.EntityFrameworkCore;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace SurfProject.Model
 {
 
-    public class Rootobject
+    public class RootObject
     {
         public int Timestamp { get; set; }
         public int LocalTimestamp { get; set; }
@@ -18,11 +20,12 @@ namespace SurfProject.Model
         public Wind Wind { get; set; }
         public Condition Condition { get; set; }
         public Charts Charts { get; set; }
+
     }
 
+    [Owned]
     public class Swell
     {
-        [Key]
         public float AbsMinBreakingHeight { get; set; }
         public float AbsMaxBreakingHeight { get; set; }
         public int Probability { get; set; }
@@ -32,6 +35,8 @@ namespace SurfProject.Model
         public Components Components { get; set; }
     }
 
+
+    [Owned]
     public class Components
     {
         public Combined Combined { get; set; }
@@ -40,45 +45,47 @@ namespace SurfProject.Model
         public Tertiary Tertiary { get; set; }
     }
 
+
+
+    [Owned]
     public class Combined
     {
-        [Key]
         public float Height { get; set; }
         public int Period { get; set; }
         public float Direction { get; set; }
         public string CompassDirection { get; set; }
     }
 
+    [Owned]
     public class Primary
     {
-        [Key]
         public float Height { get; set; }
         public int Period { get; set; }
         public float Direction { get; set; }
         public string CompassDirection { get; set; }
     }
 
+    [Owned]
     public class Secondary
     {
-        [Key]
         public float Height { get; set; }
         public int Period { get; set; }
         public float Direction { get; set; }
         public string CompassDirection { get; set; }
     }
 
+    [Owned]
     public class Tertiary
     {
-        [Key]
         public float Height { get; set; }
         public int Period { get; set; }
         public float Direction { get; set; }
         public string CompassDirection { get; set; }
     }
 
+    [Owned]
     public class Wind
     {
-        [Key]
         public int Speed { get; set; }
         public int Direction { get; set; }
         public string CompassDirection { get; set; }
@@ -87,9 +94,9 @@ namespace SurfProject.Model
         public string Unit { get; set; }
     }
 
+    [Owned]
     public class Condition
     {
-        [Key]
         public int Pressure { get; set; }
         public int Temperature { get; set; }
         public string Weather { get; set; }
@@ -97,9 +104,9 @@ namespace SurfProject.Model
         public string Unit { get; set; }
     }
 
+    [Owned]
     public class Charts
     {
-        [Key]
         public string Swell { get; set; }
         public string Period { get; set; }
         public string Wind { get; set; }
@@ -107,7 +114,7 @@ namespace SurfProject.Model
         public string Sst { get; set; }
     }
 
-
+   
 
 }
 
