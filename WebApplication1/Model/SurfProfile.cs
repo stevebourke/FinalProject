@@ -8,7 +8,6 @@ using System.Threading.Tasks;
 namespace SurfProject.Model
 {
 
-    [Table("dbo.WaveConditions")]
     public class SurfProfile
     {
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -12,6 +13,7 @@ namespace SurfProject.Pages
 {
     public class MarineAPIModel : PageModel
     {
+
 
         //Add in our dependency injections
 
@@ -34,17 +36,15 @@ namespace SurfProject.Pages
         //The RootObject from the Post class - it will be filled below with the data coming in via the json
 
 
-        public string Name { get; set; }
-
 
         public string StringResult { get; set; }
 
-
-        public List<RootObject> RootObjectList = new List<RootObject>();
+        public string Name { get; set; }
 
 
         public RootObject RootObject { get; set; }
 
+        public List<RootObject> RootObjectList { get; set; }
 
         public async Task<IActionResult> OnGetAsync()
         {
@@ -61,7 +61,7 @@ namespace SurfProject.Pages
 
 
 
-        var client = _clientFactory.CreateClient();
+            var client = _clientFactory.CreateClient();
 
             try
             {
@@ -69,9 +69,13 @@ namespace SurfProject.Pages
                 HttpResponseMessage response = await client.GetAsync($"3520cfbae15bc809791873a0089e10bd/forecast/?spot_id=" + name);
                 response.EnsureSuccessStatusCode();
 
-                StringResult = await response.Content.ReadAsStringAsync();
-                RootObjectList  = JsonConvert.DeserializeObject<List<RootObject>>(StringResult);
+
+                var StringResult = await response.Content.ReadAsStringAsync();
+                RootObjectList = JsonConvert.DeserializeObject<List<RootObject>>(StringResult);
+
+
                 return Page();
+
 
 
             }
@@ -80,8 +84,7 @@ namespace SurfProject.Pages
                 return BadRequest($"Error getting data from magicseaweed.com {httpRequestException.Message}");
             }
 
-            _db.RootObjects.Add(RootObjectList[0]);
-            await _db.SaveChangesAsync();
+          
 
         }
     }

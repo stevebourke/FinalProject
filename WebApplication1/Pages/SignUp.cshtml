@@ -1,0 +1,184 @@
+﻿@page
+@model SurfProject.Pages.SignUpModel
+@{
+    ViewData["Title"] = "SignUp";
+}
+
+
+<fieldset>
+
+    <legend class="greeting">@Model.Greeting</legend>
+
+    <form method="post" class="form">
+
+        <div class="form-horizontal">
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.FirstName class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.FirstName class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.FirstName></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.LastName class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.LastName class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.LastName></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.Password class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.Password class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.Password></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.Street class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.Street class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.Street></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=Member.Town class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.Town class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.Town></span>
+
+            </div>
+
+
+            <div class="form-group">
+
+                <div>
+
+                    @if (Model.TempData["Message"] != null)
+                    {@Model.TempData["Message"]}
+
+                </div>
+
+                <div class="row">                   
+
+                    <label asp-for=Member.Email class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=Member.Email class="form-control" />
+                    </div>
+
+                </div>
+
+            <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.Email></span>
+
+        </div>
+
+        <div class="form-group">
+
+            <div class="row">
+
+                <label asp-for=Member.EmailConfirm class="col-sm-3 control-label"></label>
+
+                <div class="col-sm-9">
+                    <input asp-for=Member.EmailConfirm class="form-control" />
+                </div>
+
+            </div>
+
+            <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.EmailConfirm></span>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <div class="row">
+
+                <label asp-for=Member.PhoneNumber class="col-sm-3 control-label"></label>
+
+                <div class="col-sm-9">
+                    <input asp-for=Member.PhoneNumber class="form-control" />
+                </div>
+
+            </div>
+
+            <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.PhoneNumber></span>
+
+        </div>
+
+
+        <div class="form-group">
+
+            <div class="row">
+
+                <label asp-for=Member.AltNumber class="col-sm-3 control-label"></label>
+
+                <div class="col-sm-9">
+                    <input asp-for=Member.AltNumber class="form-control" />
+                </div>
+
+            </div>
+
+            <span class="col-sm-6 col-sm-offset-3" asp-validation-for=Member.AltNumber></span>
+
+        </div>
+
+
+
+        <button type="submit">Press Me</button>
+
+        </div>
+
+    </form>
+
+</fieldset>
+
+

@@ -8,9 +8,15 @@ using System.Threading.Tasks;
 
 namespace SurfProject.Model
 {
-
+    [Table("SurfReport")]
     public class RootObject
     {
+
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        [Column("ReportID")]
+        [Key]
+        public int ReportID { get; set; }
+
         public int Timestamp { get; set; }
         public int LocalTimestamp { get; set; }
         public int IssueTimestamp { get; set; }
@@ -23,34 +29,41 @@ namespace SurfProject.Model
 
     }
 
+    [ComplexType]
     [Owned]
     public class Swell
     {
+        public decimal MinBreakingHeight { get; set; }
         public float AbsMinBreakingHeight { get; set; }
+        public decimal MaxBreakingHeight { get; set; }
         public float AbsMaxBreakingHeight { get; set; }
-        public int Probability { get; set; }
         public string Unit { get; set; }
-        public int MinBreakingHeight { get; set; }
-        public int MaxBreakingHeight { get; set; }
-        public Components Components { get; set; }
+        public Component Component { get; set; }
     }
 
-
+    [ComplexType]
     [Owned]
-    public class Components
+    public class Component
     {
+        public Component()
+        { Combined = new Combined(); }
+
+
         public Combined Combined { get; set; }
         public Primary Primary { get; set; }
         public Secondary Secondary { get; set; }
         public Tertiary Tertiary { get; set; }
     }
 
-
-
     [Owned]
+    [ComplexType]
     public class Combined
     {
+        public Combined()
+        { Period = new int(); }
+
         public float Height { get; set; }
+        [Column("Swell_Component_Combined_Period")]
         public int Period { get; set; }
         public float Direction { get; set; }
         public string CompassDirection { get; set; }
@@ -59,7 +72,7 @@ namespace SurfProject.Model
     [Owned]
     public class Primary
     {
-        public float Height { get; set; }
+        public decimal Height { get; set; }
         public int Period { get; set; }
         public float Direction { get; set; }
         public string CompassDirection { get; set; }
@@ -84,6 +97,7 @@ namespace SurfProject.Model
     }
 
     [Owned]
+    [ComplexType]
     public class Wind
     {
         public int Speed { get; set; }
@@ -99,7 +113,6 @@ namespace SurfProject.Model
     {
         public int Pressure { get; set; }
         public int Temperature { get; set; }
-        public string Weather { get; set; }
         public string UnitPressure { get; set; }
         public string Unit { get; set; }
     }
@@ -113,9 +126,5 @@ namespace SurfProject.Model
         public string Pressure { get; set; }
         public string Sst { get; set; }
     }
-
-   
-
 }
-
 

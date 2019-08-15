@@ -27,7 +27,7 @@
                     <span class="icon-bar"></span>
                 </button>
 
-                <a asp-page="/Index" class="navbar-brand">Create New Applicant</a>
+                <a asp-page="/Index" class="navbar-brand">Home</a>
 
             </div>
 
@@ -35,7 +35,7 @@
             <div class="navbar-collapse collapse">
 
                 <ul class="nav navbar-nav">
-                    <li><a asp-page="/ListApplicants">See All Applicants</a></li>
+                    <li><a asp-page="/SignUp">SignUp</a></li>
                     <li><a asp-page="/MarineAPI">Check weather for your location</a></li>
                 </ul>
 
@@ -53,7 +53,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.ToShortDateString() The Best Creche</p>
+            <p>&copy; @DateTime.Now.ToShortDateString() The Surf Project</p>
         </footer>
     </div>
 

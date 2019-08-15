@@ -31,7 +31,7 @@ namespace SurfProject.Pages
         }
 
         public async Task<IActionResult> OnPostAsync()
-        {
+        {        
 
             //If model state is valid pass the details of the member surf preferences into the
             //database and redirect the page
