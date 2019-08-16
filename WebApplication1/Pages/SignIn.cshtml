@@ -1,0 +1,63 @@
+﻿@page
+@model SurfProject.Pages.SignInModel
+@{
+    ViewData["Title"] = "SignIn";
+}
+
+<h2>Please enter your login details below</h2>
+
+
+<fieldset>
+
+    <form method="post" class="form">
+
+        <div class="form-horizontal">
+
+            <div class="form-group">
+
+
+                <div class="row">
+
+                    <label asp-for=EmailSignIn class="col-sm-3 control-label"></label>
+
+
+                    <div class="col-sm-9">
+                        <input asp-for=EmailSignIn class="form-control" />
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=PasswordSignIn class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=PasswordSignIn class="form-control" />
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <button type="submit">Sign In</button>
+
+            <div>
+
+                @if (Model.TempData["Message"] != null)
+                {@Model.TempData["Message"]}
+
+            </div>
+
+
+        </div>
+
+    </form>
+
+</fieldset>

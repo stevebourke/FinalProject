@@ -22,7 +22,7 @@ namespace SurfProject.Pages
         }
 
 
-        //Feed the details back into our member class
+        //Feed the details back into our Member class
 
         [BindProperty]
         public Member Member { get; set; }
