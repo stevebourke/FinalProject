@@ -11,25 +11,9 @@
 
     <form method="post" class="form">
 
+        <input asp-for=SurfProfile.MemberID value="@Model.spMemberID" hidden />
+
         <div class="form-horizontal">
-
-            <div class="form-group">
-
-                <div class="row">
-
-                    <label asp-for=SurfProfile.MemberID class="col-sm-3 control-label"></label>
-
-                    <div class="col-sm-9">
-                        <input asp-for=SurfProfile.MemberID class="form-control" />
-                    </div>
-
-                </div>
-
-                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.MemberID></span>
-
-            </div>
-
-
 
 
             <div class="form-group">
@@ -38,9 +22,7 @@
 
                     <label asp-for=SurfProfile.Location class="col-sm-3 control-label"></label>
 
-                    <div class="col-sm-9">
-                        <input asp-for=SurfProfile.Location class="form-control" />
-                    </div>
+                    <select asp-for=SurfProfile.Location asp-items=@Model.LocationList></select>
 
                 </div>
 

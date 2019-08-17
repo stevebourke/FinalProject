@@ -6,3 +6,9 @@
 
 <h2>@Model.Greeting @Model.Member.FirstName</h2>
 
+<p>Customise a surf profile for each of your chosen locations to allow you to see 
+    when the right conditions for <b>you</b> are firing!</p>
+
+<a asp-page="/CreateSurfProfile" asp-route-id="@Model.Member.MemberID">
+    Create Surf Profile
+</a>

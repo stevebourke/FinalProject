@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using SurfProject.Model;
 
 namespace SurfProject.Pages
@@ -25,13 +26,32 @@ namespace SurfProject.Pages
         public SurfProfile SurfProfile { get; set; }
 
 
-        public void OnGet()
-        {
+        //This list will be used to populate our dropdown list of locations
+        public List<SelectListItem> LocationList { get; set; } =
 
+            new List<SelectListItem>
+            {
+                new SelectListItem("Inch", "Inch" ),
+                new SelectListItem("Rossbeigh", "Rossbeigh" ),
+
+            };
+
+
+        //Use the member id passed in via route parameter to fill surfprofile.memberID value
+        [BindProperty]
+        public int spMemberID { get; set; }
+
+
+        public async Task<IActionResult> OnGetAsync(int id)
+        {
+            spMemberID = id;
+
+            return Page();
         }
 
+
         public async Task<IActionResult> OnPostAsync()
-        {        
+        {
 
             //If model state is valid pass the details of the member surf preferences into the
             //database and redirect the page

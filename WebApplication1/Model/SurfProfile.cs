@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Mvc.Rendering;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -10,7 +11,7 @@ namespace SurfProject.Model
 
     public class SurfProfile
     {
-
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SurfProfileID { get; set; }
 
@@ -45,7 +46,7 @@ namespace SurfProject.Model
 
         [Required]
         public int WindStrength { get; set; }
-       
+
 
 
         //Custom validation - it is bound to Monday but will make sure that at least one checkbox is checked

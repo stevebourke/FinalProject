@@ -22,14 +22,18 @@ namespace SurfProject.Pages
         [BindProperty]
         public SurfProfile SurfProfile { get; set; }
 
+        [BindProperty]
+        public Member Member { get; set; }
+
+        
 
 
         public async Task<IActionResult> OnGetAsync(int id)
         {
-            SurfProfile = await _db.SurfProfiles.FindAsync(id);
+            Member = await _db.Members.FindAsync(id);
 
 
-            if (SurfProfile == null)
+            if (Member == null)
             {
                 return NotFound();
             }
