@@ -4,11 +4,33 @@
     ViewData["Title"] = "MemberPage";
 }
 
-<h2>@Model.Greeting @Model.Member.FirstName</h2>
+<h2>
+    @Model.Greeting @Model.Member.FirstName
+</h2>
 
-<p>Customise a surf profile for each of your chosen locations to allow you to see 
-    when the right conditions for <b>you</b> are firing!</p>
+<div>
+    @foreach (var surf in Model.surfProfiles)
+{
+    <p>Click to display the upcoming week's conditions for @surf.Location</p>
+}
+
+</div>
+
+<p>
+    Customise a surf profile for each of your chosen locations to allow you to see
+    when the right conditions for <b>you</b> are firing!
+</p>
+
+<ul>
+    <li>Store your preferred surf conditions for your favourite surf spots</li>
+
+    <li>Quickly view when your ideal conditions are going to be at your break</li>
+
+    <li>Choose your wave height, swell direction, wind conditions and swell period</li>
+</ul>
 
 <a asp-page="/CreateSurfProfile" asp-route-id="@Model.Member.MemberID">
     Create Surf Profile
 </a>
+
+

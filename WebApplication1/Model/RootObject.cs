@@ -45,10 +45,6 @@ namespace SurfProject.Model
     [Owned]
     public class Component
     {
-        public Component()
-        { Combined = new Combined(); }
-
-
         public Combined Combined { get; set; }
         public Primary Primary { get; set; }
         public Secondary Secondary { get; set; }
@@ -59,11 +55,7 @@ namespace SurfProject.Model
     [ComplexType]
     public class Combined
     {
-        public Combined()
-        { Period = new int(); }
-
         public float Height { get; set; }
-        [Column("Swell_Component_Combined_Period")]
         public int Period { get; set; }
         public float Direction { get; set; }
         public string CompassDirection { get; set; }

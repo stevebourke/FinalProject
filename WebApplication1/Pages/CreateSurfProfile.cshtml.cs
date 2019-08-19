@@ -26,6 +26,12 @@ namespace SurfProject.Pages
         public SurfProfile SurfProfile { get; set; }
 
 
+        //Use the member id passed in via route parameter to fill surfprofile.memberID value
+        [BindProperty]
+        public int spMemberID { get; set; }
+
+
+
         //This list will be used to populate our dropdown list of locations
         public List<SelectListItem> LocationList { get; set; } =
 
@@ -37,14 +43,26 @@ namespace SurfProject.Pages
             };
 
 
-        //Use the member id passed in via route parameter to fill surfprofile.memberID value
-        [BindProperty]
-        public int spMemberID { get; set; }
-
 
         public async Task<IActionResult> OnGetAsync(int id)
-        {
+        { 
             spMemberID = id;
+
+            List<SelectListItem> LocationRemove = new List<SelectListItem>();
+
+
+            if (_db.SurfProfiles != null)
+            {
+                foreach (var surf in _db.SurfProfiles)
+                {
+                    if (surf.MemberID == spMemberID)
+                    {
+                       
+                    }
+                }
+            }
+
+
 
             return Page();
         }
@@ -54,12 +72,12 @@ namespace SurfProject.Pages
         {
 
             //If model state is valid pass the details of the member surf preferences into the
-            //database and redirect the page
+            //database and redirect the page, while passing along member ID again
             if (ModelState.IsValid)
             {
                 _db.SurfProfiles.Add(SurfProfile);
                 await _db.SaveChangesAsync();
-                return RedirectToPage("SurfProfileConfirmation", new { id = SurfProfile.MemberID });
+                return RedirectToPage("MemberPage", new { id = SurfProfile.MemberID});
             }
 
             //If not valid the page will persist until it is filled out correctly

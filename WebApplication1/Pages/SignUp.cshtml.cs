@@ -66,7 +66,7 @@ namespace SurfProject.Pages
 
 
                 await _db.SaveChangesAsync();
-                return RedirectToPage("MemberConfirmation", new { id = Member.MemberID });
+                return RedirectToPage("MemberPage", new { id = Member.MemberID });
 
             }
 

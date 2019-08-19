@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using SurfProject.Model;
 
@@ -11,25 +12,44 @@ namespace SurfProject.Pages
 {
     public class EditSurfProfileModel : PageModel
     {
+
         private readonly MemberDetailsContext _db;
+
 
         public EditSurfProfileModel(MemberDetailsContext db)
         {
             _db = db;
         }
 
+
         [BindProperty]
         public SurfProfile SurfProfile { get; set; }
 
-        public async Task<IActionResult>
-    OnGetAsync(int id)
-        {
-            SurfProfile = await _db.SurfProfiles.FindAsync(id);
 
-            if (SurfProfile == null)
+
+        //Use the member id passed in via route parameter to fill surfprofile.memberID value
+        [BindProperty]
+        public int spMemberID { get; set; }
+
+
+
+        //This list will be used to populate our dropdown list of locations
+        public List<SelectListItem> LocationList { get; set; } =
+
+            new List<SelectListItem>
             {
-                return NotFound();
-            }
+                new SelectListItem("Inch", "Inch" ),
+                new SelectListItem("Rossbeigh", "Rossbeigh" ),
+
+            };
+
+
+
+        public async Task<IActionResult>
+            OnGetAsync(int id)
+        {
+            spMemberID = id;
+
             return Page();
         }
 
@@ -52,7 +72,7 @@ namespace SurfProject.Pages
                 throw new Exception($"Surf Profile {SurfProfile.SurfProfileID} not found!");
             }
 
-            return RedirectToPage("/SurfProfileConfirmation");
+            return RedirectToPage("/SurfProfileConfirmation", new { id = SurfProfile.MemberID });
         }
     }
 }

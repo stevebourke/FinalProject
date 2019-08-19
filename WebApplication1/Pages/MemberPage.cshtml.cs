@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
@@ -27,6 +28,12 @@ namespace SurfProject.Pages
         [BindProperty]
         public Member Member { get; set; }
 
+
+        //I also could have made a collection of surfprofiles as part of my member class - trying this for now
+        public ObservableCollection<SurfProfile> surfProfiles = new ObservableCollection<SurfProfile>();
+
+
+
         public async Task<IActionResult> OnGetAsync(int id)
         {
             //Add a cookie to welcome/welcome back the member
@@ -46,15 +53,20 @@ namespace SurfProject.Pages
 
 
             Member = await _db.Members.FindAsync(id);
+           
 
-
-            if (Member == null)
+            if (_db.SurfProfiles != null)
             {
-                return NotFound();
+                foreach (SurfProfile surf in _db.SurfProfiles)
+                {
+                    if (surf.MemberID == id)
+                    {
+                        surfProfiles.Add(surf);
+                    }
+                }
             }
-            return Page();
 
-            
+            return Page();
         }
     }
 }
