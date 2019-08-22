@@ -64,7 +64,7 @@ namespace SurfProject.Pages
 
                     else
                     {
-                        TempData["Message"] = "Forgotten your password? We can send a new one to you";
+                        TempData["Message"] = "Incorrect Password. Please try again";
                         return Page();
                     }
 

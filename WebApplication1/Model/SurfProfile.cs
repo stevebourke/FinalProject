@@ -8,9 +8,10 @@ using System.Threading.Tasks;
 
 namespace SurfProject.Model
 {
-
+    
     public class SurfProfile
     {
+
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int SurfProfileID { get; set; }

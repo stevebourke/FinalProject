@@ -12,7 +12,7 @@ namespace SurfProject.Pages
 {
     public class EditSurfProfileModel : PageModel
     {
-
+        //To communicate with the database...
         private readonly MemberDetailsContext _db;
 
 
@@ -25,11 +25,6 @@ namespace SurfProject.Pages
         [BindProperty]
         public SurfProfile SurfProfile { get; set; }
 
-
-
-        //Use the member id passed in via route parameter to fill surfprofile.memberID value
-        [BindProperty]
-        public int spMemberID { get; set; }
 
 
 
@@ -48,7 +43,8 @@ namespace SurfProject.Pages
         public async Task<IActionResult>
             OnGetAsync(int id)
         {
-            spMemberID = id;
+            //Use the surfprofile ID which was passed in to retrieve the relevant surf profile from the database
+            SurfProfile = await _db.SurfProfiles.FindAsync(id);
 
             return Page();
         }
@@ -60,7 +56,9 @@ namespace SurfProject.Pages
             {
                 return Page();
             }
-
+               
+            
+            //Edited surf profile is reinserted into database
             _db.Attach(SurfProfile).State = EntityState.Modified;
 
             try
@@ -72,7 +70,7 @@ namespace SurfProject.Pages
                 throw new Exception($"Surf Profile {SurfProfile.SurfProfileID} not found!");
             }
 
-            return RedirectToPage("/SurfProfileConfirmation", new { id = SurfProfile.MemberID });
+            return RedirectToPage("/MemberPage", new { id = SurfProfile.MemberID });
         }
     }
 }

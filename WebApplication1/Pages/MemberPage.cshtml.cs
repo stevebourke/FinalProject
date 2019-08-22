@@ -12,10 +12,11 @@ namespace SurfProject.Pages
 {
     public class MemberPageModel : PageModel
     {
-
+        //Initial signup greeting - message will be changed below if it is a return visit
         public string Greeting = "Thank you for signing up with us";
 
 
+        //To communicate with the database...
         private readonly MemberDetailsContext _db;
 
 
@@ -29,7 +30,7 @@ namespace SurfProject.Pages
         public Member Member { get; set; }
 
 
-        //I also could have made a collection of surfprofiles as part of my member class - trying this for now
+        //This collection will be used to access the current surf profiles for this member - it will be filled below
         public ObservableCollection<SurfProfile> surfProfiles = new ObservableCollection<SurfProfile>();
 
 
@@ -51,10 +52,11 @@ namespace SurfProject.Pages
                     $"aged a day since you were last here on {Request.Cookies["YourCookie"]}";
             }
 
-
+            //Get the member based on the incoming id
             Member = await _db.Members.FindAsync(id);
            
 
+            //Fill the collection of profiles for those profiles with this member id
             if (_db.SurfProfiles != null)
             {
                 foreach (SurfProfile surf in _db.SurfProfiles)
@@ -64,6 +66,7 @@ namespace SurfProject.Pages
                         surfProfiles.Add(surf);
                     }
                 }
+
             }
 
             return Page();

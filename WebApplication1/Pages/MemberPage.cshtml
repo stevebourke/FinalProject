@@ -8,18 +8,52 @@
     @Model.Greeting @Model.Member.FirstName
 </h2>
 
-<div>
-    @foreach (var surf in Model.surfProfiles)
+
+<br>
+
+@if (Model.surfProfiles.Count > 0)
 {
-    <p>Click to display the upcoming week's conditions for @surf.Location</p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Location</th>
+                <th>Get Surf Report</th>
+                <th>Edit Surf Profile</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var surf in Model.surfProfiles)
+            { 
+                <tr>
+
+                    <td>@surf.Location</td>
+
+                    <td>
+                        <form method="post">
+                            <label for=@surf.Location>
+                                <input type="radio" value=@surf.Location id=@surf.Location />
+                                @surf.Location
+                            </label>
+
+                            <button type="submit">Get Report</button>
+                        </form>
+                    </td>
+
+                    <td> <a asp-page="EditSurfProfile" asp-route-id="@surf.SurfProfileID">Edit Details</a> </td>
+
+                </tr>
+            }
+        </tbody>
+    </table>
 }
-
-</div>
-
 <p>
     Customise a surf profile for each of your chosen locations to allow you to see
     when the right conditions for <b>you</b> are firing!
 </p>
+
+<br>
 
 <ul>
     <li>Store your preferred surf conditions for your favourite surf spots</li>
@@ -29,8 +63,11 @@
     <li>Choose your wave height, swell direction, wind conditions and swell period</li>
 </ul>
 
+<br>
+
 <a asp-page="/CreateSurfProfile" asp-route-id="@Model.Member.MemberID">
     Create Surf Profile
 </a>
+
 
 

@@ -4,7 +4,7 @@
     ViewData["Title"] = "EditSurfProfile";
 }
 
-<h2>Edit Surf Profile for Member ID : @Model.SurfProfile.MemberID and location @Model.SurfProfile.Location</h2>
+<h2>Edit Surf Profile</h2>
 
 
 
@@ -14,44 +14,14 @@
 
     <form method="post" class="form">
 
+        <input asp-for=SurfProfile.MemberID value="@Model.SurfProfile.MemberID" hidden />
+
+        <input asp-for=SurfProfile.SurfProfileID value="@Model.SurfProfile.SurfProfileID" hidden />
+
+        <input asp-for=SurfProfile.Location value="@Model.SurfProfile.Location" hidden />
+
+
         <div class="form-horizontal">
-
-            <div class="form-group">
-
-                <div class="row">
-
-                    <label asp-for=SurfProfile.MemberID class="col-sm-3 control-label"></label>
-
-                    <div class="col-sm-9">
-                        <input asp-for=SurfProfile.MemberID class="form-control" />
-                    </div>
-
-                </div>
-
-                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.MemberID></span>
-
-            </div>
-
-
-
-
-            <div class="form-group">
-
-                <div class="row">
-
-                    <label asp-for=SurfProfile.Location class="col-sm-3 control-label"></label>
-
-                    <div class="col-sm-9">
-                        <input asp-for=SurfProfile.Location class="form-control" />
-                    </div>
-
-                </div>
-
-                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.Location></span>
-
-            </div>
-
-
 
 
             <div class="form-group">
