@@ -4,28 +4,52 @@
     ViewData["Title"] = "MarineAPI";
 }
 
-<h2>Check the weather for your city - Enter location code below</h2>
+<h2>Upcoming conditions for @Model.SurfProfile.Location</h2>
 
 
-<form method="post">
-    <label asp-for=Name></label>
-    <input asp-for=Name />
+<div class="table-responsive">
 
-    <button type="submit">Get Weather</button>
-</form>
+    <table class="table">
+
+        <thead>
+            <tr>
+                <th>Day</th>
+                <th>Time</th>
+                <th>Wave Height</th>
+                <th>Swell Direction</th>
+                <th>Period</th>
+                <th>Wind Speed</th>
+                <th>Wind Direction</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @for (int i = 0; i < 9; i++)
+            {
+            <tr>
+                <td></td>
+
+                <td></td>
+
+                <td> @Model.RootObjectList[i].Swell.Components.Combined.Height </td>
+
+                <td> @Model.RootObjectList[i].Swell.Components.Combined.Direction </td>
+
+                <td> @Model.RootObjectList[i].Swell.Components.Combined.Period </td>
+
+                <td> @Model.RootObjectList[i].Wind.Speed </td>
+
+                <td> @Model.RootObjectList[i].Wind.Direction </td>
+            </tr>
+            }
+        </tbody>
+
+    </table>
+
+</div>
 
 
-@if (Model.StringResult != null)
-{
 
-    @*<h4>The current wind is @Model.RootObjectList[0].Wind.Speed </h4>*@
 
-    
-}
-
-else
-{
-    <h3>Check the weather for your city</h3>
-}
 
 

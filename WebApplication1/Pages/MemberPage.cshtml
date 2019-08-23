@@ -30,16 +30,7 @@
 
                     <td>@surf.Location</td>
 
-                    <td>
-                        <form method="post">
-                            <label for=@surf.Location>
-                                <input type="radio" value=@surf.Location id=@surf.Location />
-                                @surf.Location
-                            </label>
-
-                            <button type="submit">Get Report</button>
-                        </form>
-                    </td>
+                    <td> <a asp-page="MarineAPI" asp-route-id="@surf.SurfProfileID">Get Forecast</a> </td>
 
                     <td> <a asp-page="EditSurfProfile" asp-route-id="@surf.SurfProfileID">Edit Details</a> </td>
 
@@ -70,4 +61,5 @@
 </a>
 
 
+ 
 

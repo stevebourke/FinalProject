@@ -28,18 +28,6 @@ namespace SurfProject.Pages
 
 
 
-        //This list will be used to populate our dropdown list of locations
-        public List<SelectListItem> LocationList { get; set; } =
-
-            new List<SelectListItem>
-            {
-                new SelectListItem("Inch", "Inch" ),
-                new SelectListItem("Rossbeigh", "Rossbeigh" ),
-
-            };
-
-
-
         public async Task<IActionResult>
             OnGetAsync(int id)
         {
@@ -48,6 +36,7 @@ namespace SurfProject.Pages
 
             return Page();
         }
+
 
         public async Task<IActionResult>
             OnPostAsync()

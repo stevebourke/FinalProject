@@ -16,10 +16,10 @@ namespace SurfProject.Pages
 
 
         //Add in our dependency injections
-
         private readonly IHttpClientFactory _clientFactory;
 
 
+        //Link to the database again
         private readonly MemberDetailsContext _db;
 
 
@@ -31,42 +31,48 @@ namespace SurfProject.Pages
         }
 
 
-
-
-        //The RootObject from the Post class - it will be filled below with the data coming in via the json
-
-
-
-        public string StringResult { get; set; }
-
-        public string Name { get; set; }
-
-
+        //The RootObject (the surf forecast) - it will be filled below with the json from our api call
         public RootObject RootObject { get; set; }
 
+
+        //This will hold our 'json string' after it is stringified
+        public string StringResult { get; set; }
+
+
+        [BindProperty]
+        public SurfProfile SurfProfile { get; set; }
+
+
+
+        //We need a list to store all of the forecasts that are sent back in a json array
         public List<RootObject> RootObjectList { get; set; }
 
-        public async Task<IActionResult> OnGetAsync()
+
+        public async Task<IActionResult> OnGetAsync(int id)
         {
-            return Page();
-        }
+            //Use the surfprofile ID which was passed in to retrieve the relevant surf profile from the database
+            SurfProfile = await _db.SurfProfiles.FindAsync(id);
 
 
+            //This is ok here since I am only dealing with two locations - it could perhaps be moved
+            //to the SurfProfile class if there were more locations being used.
+            //API call takes in an int id for each location - convert from a location to its corresponding spot id
+            int loc = 1482;
 
-        //Tha name of the location which was posted is fed into the address, along with
-        //the key we were given from magicseaweed
+            if (SurfProfile.Location == "Inch")
+            { loc = 1482; }
 
-        public async Task<IActionResult> OnPostAsync(string name)
-        {
+            if (SurfProfile.Location == "Rossbeigh")
+            { loc = 1483; }
 
 
-
+            //Connect to the magicseaweed website from which we will get our json forecast data
             var client = _clientFactory.CreateClient();
 
             try
             {
                 client.BaseAddress = new Uri("https://magicseaweed.com/api/");
-                HttpResponseMessage response = await client.GetAsync($"3520cfbae15bc809791873a0089e10bd/forecast/?spot_id=" + name);
+                HttpResponseMessage response = await client.GetAsync($"3520cfbae15bc809791873a0089e10bd/forecast/?spot_id=" + loc);
                 response.EnsureSuccessStatusCode();
 
 

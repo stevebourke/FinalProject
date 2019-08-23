@@ -1,7 +1,7 @@
 ﻿$("#selectProfile").on('change', function () {
     locationId = $(this).children('option:selected').val();
     $.ajax({
-        url: 'https://magicseaweed.com/api/3520cfbae15bc809791873a0089e10bd/forecast/?spot_id=' + locationId,
+        url: 'https://jsonplaceholder.typicode.com/Posts/' + locationId,
             error: function (jqXHR, textStatus, errorThrown) {
                 alert("Something went wrong!");
             },

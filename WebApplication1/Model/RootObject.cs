@@ -8,15 +8,9 @@ using System.Threading.Tasks;
 
 namespace SurfProject.Model
 {
-    [Table("SurfReport")]
+
     public class RootObject
     {
-
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        [Column("ReportID")]
-        [Key]
-        public int ReportID { get; set; }
-
         public int Timestamp { get; set; }
         public int LocalTimestamp { get; set; }
         public int IssueTimestamp { get; set; }
@@ -26,24 +20,20 @@ namespace SurfProject.Model
         public Wind Wind { get; set; }
         public Condition Condition { get; set; }
         public Charts Charts { get; set; }
-
     }
 
-    [ComplexType]
-    [Owned]
     public class Swell
     {
-        public decimal MinBreakingHeight { get; set; }
         public float AbsMinBreakingHeight { get; set; }
-        public decimal MaxBreakingHeight { get; set; }
         public float AbsMaxBreakingHeight { get; set; }
+        public int Probability { get; set; }
         public string Unit { get; set; }
-        public Component Component { get; set; }
+        public int MinBreakingHeight { get; set; }
+        public int MaxBreakingHeight { get; set; }
+        public Components Components { get; set; }
     }
 
-    [ComplexType]
-    [Owned]
-    public class Component
+    public class Components
     {
         public Combined Combined { get; set; }
         public Primary Primary { get; set; }
@@ -51,8 +41,6 @@ namespace SurfProject.Model
         public Tertiary Tertiary { get; set; }
     }
 
-    [Owned]
-    [ComplexType]
     public class Combined
     {
         public float Height { get; set; }
@@ -61,16 +49,14 @@ namespace SurfProject.Model
         public string CompassDirection { get; set; }
     }
 
-    [Owned]
     public class Primary
     {
-        public decimal Height { get; set; }
+        public float Height { get; set; }
         public int Period { get; set; }
         public float Direction { get; set; }
         public string CompassDirection { get; set; }
     }
 
-    [Owned]
     public class Secondary
     {
         public float Height { get; set; }
@@ -79,7 +65,6 @@ namespace SurfProject.Model
         public string CompassDirection { get; set; }
     }
 
-    [Owned]
     public class Tertiary
     {
         public float Height { get; set; }
@@ -88,8 +73,6 @@ namespace SurfProject.Model
         public string CompassDirection { get; set; }
     }
 
-    [Owned]
-    [ComplexType]
     public class Wind
     {
         public int Speed { get; set; }
@@ -100,16 +83,15 @@ namespace SurfProject.Model
         public string Unit { get; set; }
     }
 
-    [Owned]
     public class Condition
     {
         public int Pressure { get; set; }
         public int Temperature { get; set; }
+        public string Weather { get; set; }
         public string UnitPressure { get; set; }
         public string Unit { get; set; }
     }
 
-    [Owned]
     public class Charts
     {
         public string Swell { get; set; }
@@ -118,5 +100,6 @@ namespace SurfProject.Model
         public string Pressure { get; set; }
         public string Sst { get; set; }
     }
+
 }
 
