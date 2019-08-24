@@ -26,11 +26,7 @@ namespace SurfProject.Model
 
 
         [Required]
-        public decimal MinSwellHeight { get; set; }
-
-
-        [Required]
-        public decimal MaxSwellHeight { get; set; }
+        public decimal MinWaveHeight { get; set; }
 
 
         [Required]
@@ -38,15 +34,19 @@ namespace SurfProject.Model
 
 
         [Required]
-        public string SwellDirection { get; set; }
+        public int SouthWindStrength { get; set; } = 0;
 
 
         [Required]
-        public string WindDirection { get; set; }
+        public int NorthWindStrength { get; set; } = 0;
 
 
         [Required]
-        public int WindStrength { get; set; }
+        public int WestWindStrength { get; set; } = 0;
+
+
+        [Required]
+        public int EastWindStrength { get; set; } = 0;
 
 
 
@@ -124,6 +124,26 @@ namespace SurfProject.Model
             return count;
 
         }
+
+        public int GetAppWindStrength(RootObject r)
+        {
+            int ApplicableWindStrength = 0;
+
+                if (45 < r.Wind.Direction && r.Wind.Direction < 135)
+                { ApplicableWindStrength = WestWindStrength; }
+
+                else if (135 < r.Wind.Direction && r.Wind.Direction < 225)
+                { ApplicableWindStrength = NorthWindStrength; }
+
+                else if (225 < r.Wind.Direction && r.Wind.Direction < 315)
+                { ApplicableWindStrength = EastWindStrength; }
+
+                else { ApplicableWindStrength = SouthWindStrength; }
+
+
+            return ApplicableWindStrength;
+        }
+
 
 
     }

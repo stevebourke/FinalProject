@@ -59,6 +59,8 @@ namespace SurfProject.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<int>("EastWindStrength");
+
                     b.Property<bool>("IsFridayChecked");
 
                     b.Property<bool>("IsMondayChecked");
@@ -76,21 +78,17 @@ namespace SurfProject.Migrations
                     b.Property<string>("Location")
                         .IsRequired();
 
-                    b.Property<decimal>("MaxSwellHeight");
-
                     b.Property<int>("MemberID");
 
                     b.Property<int>("MinPeriod");
 
-                    b.Property<decimal>("MinSwellHeight");
+                    b.Property<decimal>("MinWaveHeight");
 
-                    b.Property<string>("SwellDirection")
-                        .IsRequired();
+                    b.Property<int>("NorthWindStrength");
 
-                    b.Property<string>("WindDirection")
-                        .IsRequired();
+                    b.Property<int>("SouthWindStrength");
 
-                    b.Property<int>("WindStrength");
+                    b.Property<int>("WestWindStrength");
 
                     b.HasKey("SurfProfileID");
 

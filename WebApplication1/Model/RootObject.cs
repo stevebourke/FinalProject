@@ -20,6 +20,17 @@ namespace SurfProject.Model
         public Wind Wind { get; set; }
         public Condition Condition { get; set; }
         public Charts Charts { get; set; }
+
+
+        //I was unsure of how to deal with unix timestamp - found this on stackoverflow
+        //It will convert the timestamp to a more readable date and time
+        public DateTime GetDate(int LocalTimestamp)
+        {
+            DateTime MyTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
+            return MyTime.AddSeconds(LocalTimestamp);
+        }
+
+
     }
 
     public class Swell

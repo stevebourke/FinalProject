@@ -27,19 +27,11 @@
             @for (int i = 0; i < 9; i++)
             {
             <tr>
-                <td></td>
+                <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp)</td>
+
+                <td>@Model.FilteredList[i].Condition.Temperature</td>
 
                 <td></td>
-
-                <td> @Model.RootObjectList[i].Swell.Components.Combined.Height </td>
-
-                <td> @Model.RootObjectList[i].Swell.Components.Combined.Direction </td>
-
-                <td> @Model.RootObjectList[i].Swell.Components.Combined.Period </td>
-
-                <td> @Model.RootObjectList[i].Wind.Speed </td>
-
-                <td> @Model.RootObjectList[i].Wind.Direction </td>
             </tr>
             }
         </tbody>

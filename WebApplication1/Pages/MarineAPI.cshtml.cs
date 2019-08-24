@@ -48,6 +48,14 @@ namespace SurfProject.Pages
         public List<RootObject> RootObjectList { get; set; }
 
 
+        //This list will be used to hold the surf forecasts which match the criteria of a given surf profile
+        public List<RootObject> FilteredList { get; set; }
+
+
+        //The average of the max and min breaking height of waves
+        public decimal AverageWaveHeight { get; set; }
+
+
         public async Task<IActionResult> OnGetAsync(int id)
         {
             //Use the surfprofile ID which was passed in to retrieve the relevant surf profile from the database
@@ -79,6 +87,23 @@ namespace SurfProject.Pages
                 var StringResult = await response.Content.ReadAsStringAsync();
                 RootObjectList = JsonConvert.DeserializeObject<List<RootObject>>(StringResult);
 
+               
+
+
+                FilteredList = RootObjectList
+                      .Where(x => x.Swell.Components.Combined.Period > SurfProfile.MinPeriod
+                      && x.Wind.Speed <= SurfProfile.GetAppWindStrength(x))
+                      .Select(x => x).ToList();
+
+                //If no upcoming forecast meets our criteria display a message
+                if (FilteredList.Count() == 0)
+                {
+
+                    TempData["Message"] = "You already have a profile for this location";
+                    return Page();
+                }
+
+
 
                 return Page();
 
@@ -90,7 +115,7 @@ namespace SurfProject.Pages
                 return BadRequest($"Error getting data from magicseaweed.com {httpRequestException.Message}");
             }
 
-          
+
 
         }
     }

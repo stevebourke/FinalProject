@@ -28,34 +28,15 @@
 
                 <div class="row">
 
-                    <label asp-for=SurfProfile.MinSwellHeight class="col-sm-3 control-label"></label>
+                    <label asp-for=SurfProfile.MinWaveHeight class="col-sm-3 control-label"></label>
 
                     <div class="col-sm-9">
-                        <input asp-for=SurfProfile.MinSwellHeight class="form-control" />
+                        <input asp-for=SurfProfile.MinWaveHeight class="form-control" />
                     </div>
 
                 </div>
 
-                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.MinSwellHeight></span>
-
-            </div>
-
-
-
-
-            <div class="form-group">
-
-                <div class="row">
-
-                    <label asp-for=SurfProfile.MaxSwellHeight class="col-sm-3 control-label"></label>
-
-                    <div class="col-sm-9">
-                        <input asp-for=SurfProfile.MaxSwellHeight class="form-control" />
-                    </div>
-
-                </div>
-
-                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.MaxSwellHeight></span>
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.MinWaveHeight></span>
 
             </div>
 
@@ -81,57 +62,71 @@
 
 
 
+
             <div class="form-group">
 
                 <div class="row">
 
-                    <label asp-for=SurfProfile.SwellDirection class="col-sm-3 control-label"></label>
+                    <label asp-for=SurfProfile.SouthWindStrength class="col-sm-3 control-label"></label>
 
                     <div class="col-sm-9">
-                        <input asp-for=SurfProfile.SwellDirection class="form-control" />
+                        <input asp-for=SurfProfile.SouthWindStrength class="form-control" />
                     </div>
 
                 </div>
 
-                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.SwellDirection></span>
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.SouthWindStrength></span>
 
             </div>
 
 
-
-
             <div class="form-group">
 
                 <div class="row">
 
-                    <label asp-for=SurfProfile.WindDirection class="col-sm-3 control-label"></label>
+                    <label asp-for=SurfProfile.NorthWindStrength class="col-sm-3 control-label"></label>
 
                     <div class="col-sm-9">
-                        <input asp-for=SurfProfile.WindDirection class="form-control" />
+                        <input asp-for=SurfProfile.NorthWindStrength class="form-control" />
                     </div>
 
                 </div>
 
-                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.WindDirection></span>
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.NorthWindStrength></span>
 
             </div>
 
 
+            <div class="form-group">
+
+                <div class="row">
+
+                    <label asp-for=SurfProfile.WestWindStrength class="col-sm-3 control-label"></label>
+
+                    <div class="col-sm-9">
+                        <input asp-for=SurfProfile.WestWindStrength class="form-control" />
+                    </div>
+
+                </div>
+
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.WestWindStrength></span>
+
+            </div>
 
 
             <div class="form-group">
 
                 <div class="row">
 
-                    <label asp-for=SurfProfile.WindStrength class="col-sm-3 control-label"></label>
+                    <label asp-for=SurfProfile.EastWindStrength class="col-sm-3 control-label"></label>
 
                     <div class="col-sm-9">
-                        <input asp-for=SurfProfile.WindStrength class="form-control" />
+                        <input asp-for=SurfProfile.EastWindStrength class="form-control" />
                     </div>
 
                 </div>
 
-                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.WindStrength></span>
+                <span class="col-sm-6 col-sm-offset-3" asp-validation-for=SurfProfile.EastWindStrength></span>
 
             </div>
 
