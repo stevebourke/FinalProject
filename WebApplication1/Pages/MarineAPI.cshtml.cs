@@ -52,8 +52,8 @@ namespace SurfProject.Pages
         public List<RootObject> FilteredList { get; set; }
 
 
-        //The average of the max and min breaking height of waves
         public decimal AverageWaveHeight { get; set; }
+
 
 
         public async Task<IActionResult> OnGetAsync(int id)
@@ -87,19 +87,19 @@ namespace SurfProject.Pages
                 var StringResult = await response.Content.ReadAsStringAsync();
                 RootObjectList = JsonConvert.DeserializeObject<List<RootObject>>(StringResult);
 
-               
-
 
                 FilteredList = RootObjectList
                       .Where(x => x.Swell.Components.Combined.Period > SurfProfile.MinPeriod
-                      && x.Wind.Speed <= SurfProfile.GetAppWindStrength(x))
+                      && x.Wind.Speed <= SurfProfile.GetAppWindStrength(x)
+                      && x.Swell.GetAverageWaveHeight(x.Swell.MinBreakingHeight, x.Swell.MaxBreakingHeight) >= SurfProfile.MinWaveHeight
+                      && SurfProfile.IsDayIncluded(x) == true)
                       .Select(x => x).ToList();
 
                 //If no upcoming forecast meets our criteria display a message
                 if (FilteredList.Count() == 0)
                 {
 
-                    TempData["Message"] = "You already have a profile for this location";
+                    TempData["Message"] = "No upcoming forecasts match your criteria";
                     return Page();
                 }
 

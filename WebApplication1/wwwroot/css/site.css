@@ -1,17 +1,14 @@
-/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification 
-for details on configuring this project to bundle and minify static web assets. */
+
 body {
     padding-top: 50px;
     padding-bottom: 20px;
 }
 
-/* Wrapping element */
-/* Set some basic padding to keep content from hitting the edges */
+
 .body-content {
     padding-left: 15px;
     padding-right: 15px;
 }
-
 
 
 /*My added css starts here*/
@@ -45,4 +42,22 @@ body {
 
 .greeting {
     text-align: center;
+}
+
+
+/* This is for the coloured canvas that the animated surf figure will appear on */
+#surfCanvas {
+    width: 900px;
+    height: 500px;
+    border: solid blue;
+    margin: 100px;
+}
+
+/* Control the size and positioning of the surfer cartoon image */
+#animatedSurfer {
+    position: absolute;
+    left: 650px;
+    top: 450px;
+    height: 200px;
+    width: 250px;
 }

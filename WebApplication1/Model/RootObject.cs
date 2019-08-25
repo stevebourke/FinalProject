@@ -42,6 +42,15 @@ namespace SurfProject.Model
         public int MinBreakingHeight { get; set; }
         public int MaxBreakingHeight { get; set; }
         public Components Components { get; set; }
+
+
+        //I put this simple method in here as I thought it would make for neater code - now I'm not so sure!
+        public decimal GetAverageWaveHeight(int minWave, int maxWave)
+        {
+            decimal avgHeight = (minWave + maxWave) / 2;
+
+            return avgHeight;
+        }
     }
 
     public class Components

@@ -26,26 +26,32 @@ namespace SurfProject.Model
 
 
         [Required]
+        [Display(Name = "Minimum Wave Height (feet)")]
         public decimal MinWaveHeight { get; set; }
 
 
         [Required]
+        [Display(Name = "Minimum Wave Period (seconds)")]
         public int MinPeriod { get; set; }
 
 
         [Required]
+        [Display(Name = "Maximum Wind if Southerly (mph)")]
         public int SouthWindStrength { get; set; } = 0;
 
 
         [Required]
+        [Display(Name = "Maximum Wind if Northerly (mph)")]
         public int NorthWindStrength { get; set; } = 0;
 
 
         [Required]
+        [Display(Name = "Maximum Wind if Westerly (mph)")]
         public int WestWindStrength { get; set; } = 0;
 
 
         [Required]
+        [Display(Name = "Maximum Wind if Easterly (mph)")]
         public int EastWindStrength { get; set; } = 0;
 
 
@@ -125,6 +131,9 @@ namespace SurfProject.Model
 
         }
 
+        //Wind direction is cut into four segments, e.g. sw to se is one segment.
+        //Check incoming forecast's wind direction...member has given 
+        //different max wind strength value for each direction
         public int GetAppWindStrength(RootObject r)
         {
             int ApplicableWindStrength = 0;
@@ -144,6 +153,62 @@ namespace SurfProject.Model
             return ApplicableWindStrength;
         }
 
+
+        //Check whether the member wants a forecast for the day of the week of a particular forecast
+        public bool IsDayIncluded(RootObject r)
+        {
+            string forecastDay = r.GetDate(r.LocalTimestamp).DayOfWeek.ToString();
+
+            bool includeDay = false;
+
+            switch (forecastDay)
+            {
+                case "Monday":
+
+                    if (IsMondayChecked) { includeDay = true; }
+
+                    break;
+
+                case "Tuesday":
+
+                    if (IsTuesdayChecked) { includeDay = true; }
+
+                    break;
+
+                case "Wednesday":
+
+                    if (IsWednesdayChecked) { includeDay = true; }
+
+                    break;
+
+                case "Thursday":
+
+                    if (IsThursdayChecked) { includeDay = true; }
+
+                    break;
+
+                case "Friday":
+
+                    if (IsFridayChecked) { includeDay = true; }
+
+                    break;
+
+                case "Saturday":
+
+                    if (IsSaturdayChecked) { includeDay = true; }
+
+                    break;
+
+                case "Sunday":
+
+                    if (IsSundayChecked) { includeDay = true; }
+
+                    break;
+            }
+
+            return includeDay;
+
+        }
 
 
     }
