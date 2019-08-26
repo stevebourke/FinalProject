@@ -24,10 +24,10 @@ namespace SurfProject.Model
 
         //I was unsure of how to deal with unix timestamp - found this on stackoverflow
         //It will convert the timestamp to a more readable date and time
-        public DateTime GetDate(int LocalTimestamp)
+        public DateTime GetDate(int timestamp)
         {
             DateTime MyTime = new DateTime(1970, 1, 1, 0, 0, 0, 0);
-            return MyTime.AddSeconds(LocalTimestamp);
+            return MyTime.AddSeconds(timestamp);
         }
 
 

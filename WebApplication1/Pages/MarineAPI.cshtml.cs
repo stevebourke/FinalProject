@@ -52,10 +52,10 @@ namespace SurfProject.Pages
         public List<RootObject> FilteredList { get; set; }
 
 
-        public decimal AverageWaveHeight { get; set; }
+        public Dictionary<int, List<SurfProfile>> PeersDictionary { get; set; } = new Dictionary<int, List<SurfProfile>>();
 
 
-
+        //On page loading...
         public async Task<IActionResult> OnGetAsync(int id)
         {
             //Use the surfprofile ID which was passed in to retrieve the relevant surf profile from the database
@@ -74,7 +74,7 @@ namespace SurfProject.Pages
             { loc = 1483; }
 
 
-            //Connect to the magicseaweed website from which we will get our json forecast data
+            //Connect to the magicseaweed website from which we will get our json forecast data passing our API key and the location ID
             var client = _clientFactory.CreateClient();
 
             try
@@ -84,16 +84,21 @@ namespace SurfProject.Pages
                 response.EnsureSuccessStatusCode();
 
 
+                //Convert the incoming json into a list of root objects(forecasts)
                 var StringResult = await response.Content.ReadAsStringAsync();
                 RootObjectList = JsonConvert.DeserializeObject<List<RootObject>>(StringResult);
 
 
-                FilteredList = RootObjectList
-                      .Where(x => x.Swell.Components.Combined.Period > SurfProfile.MinPeriod
-                      && x.Wind.Speed <= SurfProfile.GetAppWindStrength(x)
-                      && x.Swell.GetAverageWaveHeight(x.Swell.MinBreakingHeight, x.Swell.MaxBreakingHeight) >= SurfProfile.MinWaveHeight
-                      && SurfProfile.IsDayIncluded(x) == true)
-                      .Select(x => x).ToList();
+                PeersDictionary = SurfProfile.GetPeersList(RootObjectList);
+
+                List<SurfProfile> sp = PeersDictionary.First().Value;
+
+                int test = PeersDictionary.First().Key;
+
+
+                //Get list of forecasts which match the surf profile conditions
+                FilteredList = SurfProfile.GetFilteredList(RootObjectList);
+
 
                 //If no upcoming forecast meets our criteria display a message
                 if (FilteredList.Count() == 0)
@@ -105,11 +110,12 @@ namespace SurfProject.Pages
 
 
 
+
                 return Page();
-
-
-
             }
+
+        
+            //If there is an error...
             catch (HttpRequestException httpRequestException)
             {
                 return BadRequest($"Error getting data from magicseaweed.com {httpRequestException.Message}");

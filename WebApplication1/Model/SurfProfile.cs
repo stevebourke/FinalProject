@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SurfProject.Model
 {
-    
+
     public class SurfProfile
     {
 
@@ -86,6 +86,13 @@ namespace SurfProject.Model
         public bool IsSundayChecked { get; set; }
 
 
+        //Empty Constructor
+        public SurfProfile()
+        {
+
+        }
+
+
 
         //This will return the number of days selected
         public int GetNumberOfDays()
@@ -128,8 +135,9 @@ namespace SurfProject.Model
             }
 
             return count;
-
         }
+
+
 
         //Wind direction is cut into four segments, e.g. sw to se is one segment.
         //Check incoming forecast's wind direction...member has given 
@@ -138,20 +146,22 @@ namespace SurfProject.Model
         {
             int ApplicableWindStrength = 0;
 
-                if (45 < r.Wind.Direction && r.Wind.Direction < 135)
-                { ApplicableWindStrength = WestWindStrength; }
+            if (45 < r.Wind.Direction && r.Wind.Direction < 135)
+            { ApplicableWindStrength = WestWindStrength; }
 
-                else if (135 < r.Wind.Direction && r.Wind.Direction < 225)
-                { ApplicableWindStrength = NorthWindStrength; }
+            else if (135 < r.Wind.Direction && r.Wind.Direction < 225)
+            { ApplicableWindStrength = NorthWindStrength; }
 
-                else if (225 < r.Wind.Direction && r.Wind.Direction < 315)
-                { ApplicableWindStrength = EastWindStrength; }
+            else if (225 < r.Wind.Direction && r.Wind.Direction < 315)
+            { ApplicableWindStrength = EastWindStrength; }
 
-                else { ApplicableWindStrength = SouthWindStrength; }
+            else { ApplicableWindStrength = SouthWindStrength; }
 
 
             return ApplicableWindStrength;
         }
+
+
 
 
         //Check whether the member wants a forecast for the day of the week of a particular forecast
@@ -207,10 +217,74 @@ namespace SurfProject.Model
             }
 
             return includeDay;
+        }
+
+
+
+        //This method returns only the forecasts whose conditions match those of the surf profile
+        public List<RootObject> GetFilteredList(List<RootObject> rootObjects)
+        {
+            List<RootObject> FilteredList = rootObjects
+
+              .Where(x => x.Swell.Components.Combined.Period > MinPeriod
+
+                      && x.Wind.Speed <= GetAppWindStrength(x)
+
+                      && x.Swell.GetAverageWaveHeight(x.Swell.MinBreakingHeight, x.Swell.MaxBreakingHeight) >= MinWaveHeight
+
+                      && IsDayIncluded(x) == true)
+
+                      .Select(x => x).ToList();
+
+            return FilteredList;
 
         }
 
 
+        //Link to the database again for use in the method below
+        private readonly MemberDetailsContext _db;
+
+
+        public SurfProfile(MemberDetailsContext db)
+        {
+
+            _db = db;
+        }
+
+
+        //Here we are doing a similar search as above to return all other members for whom the forecast
+        //matches their criteria
+        public Dictionary<int, List<SurfProfile>> GetPeersList(List<RootObject> roots)
+        {
+
+            Dictionary<int, List<SurfProfile>> dictionary = new Dictionary<int, List<SurfProfile>>();
+
+            List<SurfProfile> PeersList = new List<SurfProfile>();
+
+
+            for (int i = 0; i < 8; i++)
+            {
+                var tempList = _db.SurfProfiles
+
+                .Where(x => x.Location == Location //ensure that the location matches the location for this profile
+
+                && x.MemberID != MemberID          //do not return the member back himself in the list!
+
+              && roots[i].Swell.Components.Combined.Period > x.MinPeriod
+
+              && roots[i].Wind.Speed <= x.GetAppWindStrength(roots[i])
+
+              && roots[i].Swell.GetAverageWaveHeight(roots[i].Swell.MinBreakingHeight, roots[i].Swell.MaxBreakingHeight) >= x.MinWaveHeight
+
+              && x.IsDayIncluded(roots[i]) == true)
+
+              .Select(x => x).ToList();
+
+                dictionary.Add(roots[i].LocalTimestamp, tempList);    //On each iteration add the results to our persisting list
+            }
+
+            return dictionary;
+        }
     }
 
 }

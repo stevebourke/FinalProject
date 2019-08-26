@@ -4,9 +4,85 @@
     ViewData["Title"] = "MarineAPI";
 }
 
+<br />
+
 <div>Return to Member <a asp-page="/MemberPage" asp-route-id="@Model.SurfProfile.MemberID">Home Page</a></div>
 
+<br />
+
+<h2>These are the members whose surf profiles are also a match over the coming 24 hours for @Model.SurfProfile.Location</h2>
+
+@if (Model.PeersDictionary.Count == 0)
+{
+<div>
+    No matches for next 24 hours
+</div>
+}
+
+@if (Model.PeersDictionary.Count > 0)
+{
+    <div class="table-responsive">
+
+        <table class="table">
+
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Date</th>
+                    <th>Time</th>
+
+                    @foreach (var keyVal in Model.PeersDictionary.Values.Distinct())
+                    {
+                       <td>Member ID</td>
+                    }
+
+                    <th>Member ID</th>foreach
+                </tr>
+            </thead>
+            Stri
+            <tbody>
+
+
+                @foreach (var keyValue in Model.PeersDictionary)
+                {
+                    //I use a random rootObject item to allow me to access GetDate method
+
+                    <tr>
+                        <td>
+                            @Model.RootObjectList[0].GetDate(keyValue.Key).DayOfWeek
+                        </td>
+
+                        <td>
+                            @Model.RootObjectList[0].GetDate(keyValue.Key).ToShortDateString()
+                        </td>
+
+                        <td>
+                            @Model.RootObjectList[0].GetDate(keyValue.Key).ToShortTimeString()
+                        </td>
+
+                        @foreach (var profile in keyValue.Value)
+                        {
+                            <td>
+                                @profile.MemberID.ToString()
+                            </td>
+                        }
+                    </tr>
+
+                }
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+}
+
+<br />
+
 <h2>Upcoming conditions for @Model.SurfProfile.Location which match your criteria</h2>
+
+<br />
 
 @if (Model.FilteredList.Count > 0)
 {
@@ -29,28 +105,29 @@
 
             <tbody>
 
-                @for(int i = 0; i < Model.FilteredList.Count(); i++)
+                @for (int i = 0; i < Model.FilteredList.Count(); i++)
                 {
-                <tr>
-                    <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).DayOfWeek</td>
+                    <tr>
+                        <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).DayOfWeek</td>
 
-                    <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).ToShortDateString()</td>
+                        <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).ToShortDateString()</td>
 
-                    <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).ToShortTimeString()</td>
+                        <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).ToShortTimeString()</td>
 
-                    <td>
-                        @Model.FilteredList[i].Swell.GetAverageWaveHeight(Model.FilteredList[i].Swell.MinBreakingHeight,
-         Model.FilteredList[i].Swell.MaxBreakingHeight) @Model.FilteredList[i].Swell.Unit
-                </td>
+                        <td>
+                            @Model.FilteredList[i].Swell.GetAverageWaveHeight(Model.FilteredList[i].Swell.MinBreakingHeight,
+          Model.FilteredList[i].Swell.MaxBreakingHeight) @Model.FilteredList[i].Swell.Unit
 
-                <td>@Model.FilteredList[i].Swell.Components.Primary.CompassDirection</td>
+                        </td>
 
-                <td>@Model.FilteredList[i].Swell.Components.Primary.Period</td>
+                        <td>@Model.FilteredList[i].Swell.Components.Primary.CompassDirection</td>
 
-                <td>@Model.FilteredList[i].Wind.Speed @Model.FilteredList[i].Wind.Unit</td>
+                        <td>@Model.FilteredList[i].Swell.Components.Primary.Period</td>
 
-                <td>@Model.FilteredList[i].Wind.CompassDirection</td>
-                </tr>
+                        <td>@Model.FilteredList[i].Wind.Speed @Model.FilteredList[i].Wind.Unit</td>
+
+                        <td>@Model.FilteredList[i].Wind.CompassDirection</td>
+                    </tr>
 
                 }
             </tbody>
@@ -59,7 +136,9 @@
 
     </div>
 
+
 }
+
 
 <div>
     @if (Model.TempData["Message"] != null)
