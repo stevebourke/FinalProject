@@ -9,7 +9,7 @@ using SurfProject.Model;
 namespace SurfProject.Migrations
 {
     [DbContext(typeof(MemberDetailsContext))]
-    [Migration("20190824171907_InitialCreate")]
+    [Migration("20190830094249_InitialCreate")]
     partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

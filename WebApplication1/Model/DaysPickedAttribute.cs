@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SurfProject.Model
 {
+    //This is used to ensure that at least one day is picked when creating a surf profile
     public class DaysPickedAttribute : ValidationAttribute, IClientModelValidator
     {
 
@@ -14,7 +15,7 @@ namespace SurfProject.Model
         {
             SurfProfile surfProfile = (SurfProfile)validationContext.ObjectInstance;
 
-            if (surfProfile.GetNumberOfDays() < 1)
+            if (surfProfile.GetNumberOfDays() < 1)              //Call on the method in the surf profile class
             {
                 return new ValidationResult(GetErrorMessage());
             }

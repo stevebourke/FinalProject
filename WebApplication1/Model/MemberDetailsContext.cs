@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace SurfProject.Model
 {
+    //For setting up the database...
     public class MemberDetailsContext : DbContext
     {
 
@@ -18,9 +19,9 @@ namespace SurfProject.Model
 
         public DbSet<Member> Members { get; set; }
 
-        public DbSet<SurfProfile> SurfProfiles { get; set; }
-      
 
+        public DbSet<SurfProfile> SurfProfiles { get; set; }
+     
 
     }
 }

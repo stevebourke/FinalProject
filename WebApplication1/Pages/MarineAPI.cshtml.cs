@@ -15,7 +15,7 @@ namespace SurfProject.Pages
     {
 
 
-        //Add in our dependency injections
+        //Add in our dependency injection
         private readonly IHttpClientFactory _clientFactory;
 
 
@@ -43,7 +43,7 @@ namespace SurfProject.Pages
         public SurfProfile SurfProfile { get; set; }
 
 
-
+        
         //We need a list to store all of the forecasts that are sent back in a json array
         public List<RootObject> RootObjectList { get; set; }
 
@@ -52,7 +52,12 @@ namespace SurfProject.Pages
         public List<RootObject> FilteredList { get; set; }
 
 
+    
         public Dictionary<int, List<SurfProfile>> PeersDictionary { get; set; } = new Dictionary<int, List<SurfProfile>>();
+
+
+        //This will hold the length of longest list in dictionary - filled below
+        public int MembersList { get; set; }
 
 
         //On page loading...
@@ -89,11 +94,15 @@ namespace SurfProject.Pages
                 RootObjectList = JsonConvert.DeserializeObject<List<RootObject>>(StringResult);
 
 
+                //Check the rootobject list for matches of conditions with other members
                 PeersDictionary = SurfProfile.GetPeersList(RootObjectList);
 
-                List<SurfProfile> sp = PeersDictionary.First().Value;
 
-                int test = PeersDictionary.First().Key;
+                //Found this on stackoverflow - get the length of the longest list of surf profiles in the dictionary
+                if (PeersDictionary.Count > 0)
+                { MembersList = PeersDictionary.Max(m => m.Value.Count); }
+                
+
 
 
                 //Get list of forecasts which match the surf profile conditions
@@ -107,7 +116,6 @@ namespace SurfProject.Pages
                     TempData["Message"] = "No upcoming forecasts match your criteria";
                     return Page();
                 }
-
 
 
 

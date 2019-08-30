@@ -280,8 +280,14 @@ namespace SurfProject.Model
 
               .Select(x => x).ToList();
 
-                dictionary.Add(roots[i].LocalTimestamp, tempList);    //On each iteration add the results to our persisting list
+                if (tempList.Count() > 0)                                 //Do not add an empty list
+
+                {
+                    dictionary.Add(roots[i].LocalTimestamp, tempList);    //On each iteration add the results to our persisting list
+                }
             }
+
+                
 
             return dictionary;
         }

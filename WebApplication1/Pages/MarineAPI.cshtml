@@ -14,9 +14,9 @@
 
 @if (Model.PeersDictionary.Count == 0)
 {
-<div>
-    No matches for next 24 hours
-</div>
+    <div>
+        No matches for next 24 hours
+    </div>
 }
 
 @if (Model.PeersDictionary.Count > 0)
@@ -31,15 +31,15 @@
                     <th>Date</th>
                     <th>Time</th>
 
-                    @foreach (var keyVal in Model.PeersDictionary.Values.Distinct())
+                    @for (int i = 0; i < Model.MembersList; i++)
                     {
-                       <td>Member ID</td>
+                        <td>Member ID</td>
+
                     }
 
-                    <th>Member ID</th>foreach
                 </tr>
             </thead>
-            Stri
+
             <tbody>
 
 
@@ -66,6 +66,7 @@
                                 @profile.MemberID.ToString()
                             </td>
                         }
+
                     </tr>
 
                 }
@@ -118,18 +119,18 @@
                             @Model.FilteredList[i].Swell.GetAverageWaveHeight(Model.FilteredList[i].Swell.MinBreakingHeight,
           Model.FilteredList[i].Swell.MaxBreakingHeight) @Model.FilteredList[i].Swell.Unit
 
-                        </td>
+    </td>
 
-                        <td>@Model.FilteredList[i].Swell.Components.Primary.CompassDirection</td>
+    <td>@Model.FilteredList[i].Swell.Components.Primary.CompassDirection</td>
 
-                        <td>@Model.FilteredList[i].Swell.Components.Primary.Period</td>
+    <td>@Model.FilteredList[i].Swell.Components.Primary.Period</td>
 
-                        <td>@Model.FilteredList[i].Wind.Speed @Model.FilteredList[i].Wind.Unit</td>
+    <td>@Model.FilteredList[i].Wind.Speed @Model.FilteredList[i].Wind.Unit</td>
 
-                        <td>@Model.FilteredList[i].Wind.CompassDirection</td>
-                    </tr>
+    <td>@Model.FilteredList[i].Wind.CompassDirection</td>
+</tr>
 
-                }
+}
             </tbody>
 
         </table>

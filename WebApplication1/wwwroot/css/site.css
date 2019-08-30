@@ -37,11 +37,30 @@ body {
 
 .container {
     border: 3px black;
-    background-color: lightblue;
+    background-color: darkseagreen;
 }
 
 .greeting {
     text-align: center;
+}
+
+
+div {
+    font-size: 15px;
+    font-family: 'Arial';
+    font-weight: bold;
+}
+
+
+th {
+    color: darkslategrey;
+    font-size: larger;
+    text-decoration: underline;
+}
+
+td {
+    font-size: large;
+    font-family: 'Franklin Gothic';
 }
 
 
