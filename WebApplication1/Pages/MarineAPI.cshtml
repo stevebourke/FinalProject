@@ -3,7 +3,6 @@
 @{
     ViewData["Title"] = "MarineAPI";
 }
-
 <br />
 
 <div>Return to Member <a asp-page="/MemberPage" asp-route-id="@Model.SurfProfile.MemberID">Home Page</a></div>
@@ -12,12 +11,14 @@
 
 <h2>These are the members whose surf profiles are also a match over the coming 24 hours for @Model.SurfProfile.Location</h2>
 
+
 @if (Model.PeersDictionary.Count == 0)
 {
     <div>
         No matches for next 24 hours
     </div>
 }
+
 
 @if (Model.PeersDictionary.Count > 0)
 {
@@ -34,14 +35,11 @@
                     @for (int i = 0; i < Model.MembersList; i++)
                     {
                         <td>Member ID</td>
-
                     }
 
                 </tr>
             </thead>
-
             <tbody>
-
 
                 @foreach (var keyValue in Model.PeersDictionary)
                 {
@@ -51,31 +49,43 @@
                         <td>
                             @Model.RootObjectList[0].GetDate(keyValue.Key).DayOfWeek
                         </td>
-
                         <td>
                             @Model.RootObjectList[0].GetDate(keyValue.Key).ToShortDateString()
                         </td>
-
                         <td>
                             @Model.RootObjectList[0].GetDate(keyValue.Key).ToShortTimeString()
                         </td>
-
                         @foreach (var profile in keyValue.Value)
                         {
                             <td>
                                 @profile.MemberID.ToString()
                             </td>
                         }
-
                     </tr>
 
                 }
-
             </tbody>
-
         </table>
-
     </div>
+
+}
+
+@if (Model.DistinctMemberIDs.Count > 0)
+{
+    <select id="selectedID">
+
+        @for (int i = 0; i < Model.DistinctMemberIDs.Count; i++)
+        {
+            <option>@Model.DistinctMemberIDs[i]</option>
+        }
+
+    </select>
+
+    <input type="hidden" id="senderMemberID" value=@Model.SurfProfile.MemberID />
+
+    <input type="text" id="textMessage" />
+
+    <button type="button" id="btnPostMessage">Send Message</button>
 
 }
 
@@ -88,9 +98,7 @@
 @if (Model.FilteredList.Count > 0)
 {
     <div class="table-responsive">
-
         <table class="table">
-
             <thead>
                 <tr>
                     <th>Day</th>
@@ -103,9 +111,7 @@
                     <th>Wind Direction</th>
                 </tr>
             </thead>
-
             <tbody>
-
                 @for (int i = 0; i < Model.FilteredList.Count(); i++)
                 {
                     <tr>
@@ -118,7 +124,6 @@
                         <td>
                             @Model.FilteredList[i].Swell.GetAverageWaveHeight(Model.FilteredList[i].Swell.MinBreakingHeight,
           Model.FilteredList[i].Swell.MaxBreakingHeight) @Model.FilteredList[i].Swell.Unit
-
     </td>
 
     <td>@Model.FilteredList[i].Swell.Components.Primary.CompassDirection</td>
@@ -132,14 +137,11 @@
 
 }
             </tbody>
-
         </table>
-
     </div>
 
 
 }
-
 
 <div>
     @if (Model.TempData["Message"] != null)
@@ -147,6 +149,8 @@
 </div>
 
 
-
+@section scripts
+    {
+    <script src="~/js/JavaScript.js"></script>}
 
 

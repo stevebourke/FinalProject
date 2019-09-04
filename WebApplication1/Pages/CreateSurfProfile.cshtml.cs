@@ -81,9 +81,11 @@ namespace SurfProject.Pages
                             if (list.Count() > 0)
                             {
 
-                                TempData["Message"] = "You already have a profile for this location";
-                                return Page();
-                            }
+                            //I wanted to use return Page() to persist the filled-in form fields but didn't know
+                            //how to pass memberID, which was getting dropped using Page(), so am just going with this...
+                            TempData["Message"] = "You already have a profile for this location";
+                            return RedirectToPage("CreateSurfProfile", new { id = SurfProfile.MemberID });
+                        }
                         
                     }
                 }

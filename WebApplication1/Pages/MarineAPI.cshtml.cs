@@ -53,11 +53,17 @@ namespace SurfProject.Pages
 
 
     
+        //List of other members' surf profiles which are a match for conditions over the next 24 hours
+        //Using a dictionary to link each profile to the timestamp of the forecast it matches
         public Dictionary<int, List<SurfProfile>> PeersDictionary { get; set; } = new Dictionary<int, List<SurfProfile>>();
 
 
         //This will hold the length of longest list in dictionary - filled below
         public int MembersList { get; set; }
+
+
+        //A list which will hold each distinct memberID from peers dictionary
+        public List<int> DistinctMemberIDs { get; set; }
 
 
         //On page loading...
@@ -101,7 +107,10 @@ namespace SurfProject.Pages
                 //Found this on stackoverflow - get the length of the longest list of surf profiles in the dictionary
                 if (PeersDictionary.Count > 0)
                 { MembersList = PeersDictionary.Max(m => m.Value.Count); }
-                
+
+
+                //Get the Member IDs of the Surf Profiles in the Peers Dictionary
+                DistinctMemberIDs = SurfProfile.GetPeerMemberIDs(PeersDictionary);
 
 
 

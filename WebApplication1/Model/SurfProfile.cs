@@ -252,8 +252,8 @@ namespace SurfProject.Model
         }
 
 
-        //Here we are doing a similar search as above to return all other members for whom the forecast
-        //matches their criteria
+        //Here we are doing a similar search as above to return all other members' profiles for whom the forecast
+        //matches their criteria. I am using a dictionary to allow me to append a timestamp to each list of profiles
         public Dictionary<int, List<SurfProfile>> GetPeersList(List<RootObject> roots)
         {
 
@@ -270,7 +270,7 @@ namespace SurfProject.Model
 
                 && x.MemberID != MemberID          //do not return the member back himself in the list!
 
-              && roots[i].Swell.Components.Combined.Period > x.MinPeriod
+              && roots[i].Swell.Components.Combined.Period >= x.MinPeriod
 
               && roots[i].Wind.Speed <= x.GetAppWindStrength(roots[i])
 
@@ -283,13 +283,31 @@ namespace SurfProject.Model
                 if (tempList.Count() > 0)                                 //Do not add an empty list
 
                 {
-                    dictionary.Add(roots[i].LocalTimestamp, tempList);    //On each iteration add the results to our persisting list
+                    dictionary.Add(roots[i].LocalTimestamp, tempList);    //On each iteration add the timestamp and the list of other profiles
+                                                                          //as a key-value pair in my dictionary
                 }
             }
 
-                
-
             return dictionary;
+        }
+
+        
+        //This method allows me to get a list of distinct memberIDs contained in PeersDictionary
+        public List<int> GetPeerMemberIDs(Dictionary<int, List<SurfProfile>> myDictionary)
+        {
+            List<int> memberIDs = new List<int>();
+
+            foreach (var keyValuePair in myDictionary)
+            {
+                foreach (var profile in keyValuePair.Value)
+                {
+                    memberIDs.Add(profile.MemberID);
+                }
+            }
+
+            List<int> distinctMemberIDs = memberIDs.Distinct().ToList();
+
+            return distinctMemberIDs;
         }
     }
 

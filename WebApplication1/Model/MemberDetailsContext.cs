@@ -23,5 +23,6 @@ namespace SurfProject.Model
         public DbSet<SurfProfile> SurfProfiles { get; set; }
      
 
+        public DbSet<Message> Messages { get; set; }
     }
 }
