@@ -43,6 +43,15 @@ namespace SurfProject.Pages
         public SurfProfile SurfProfile { get; set; }
 
 
+
+        [BindProperty]
+        public Message Message { get; set; }
+
+
+        //This will be used to hold all messages sent to the current user
+        public List<Message> MyMessages { get; set; }
+
+
         
         //We need a list to store all of the forecasts that are sent back in a json array
         public List<RootObject> RootObjectList { get; set; }
@@ -71,6 +80,11 @@ namespace SurfProject.Pages
         {
             //Use the surfprofile ID which was passed in to retrieve the relevant surf profile from the database
             SurfProfile = await _db.SurfProfiles.FindAsync(id);
+
+
+            //This creates a list of all messages sent to this particular member
+            MyMessages = _db.Messages.Where(x => x.RecipientID == SurfProfile.MemberID)
+                .Select(x => x).ToList();
 
 
             //This is ok here since I am only dealing with two locations - it could perhaps be moved

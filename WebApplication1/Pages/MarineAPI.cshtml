@@ -3,11 +3,73 @@
 @{
     ViewData["Title"] = "MarineAPI";
 }
+
 <br />
 
 <div>Return to Member <a asp-page="/MemberPage" asp-route-id="@Model.SurfProfile.MemberID">Home Page</a></div>
 
 <br />
+
+<h2>Upcoming conditions for @Model.SurfProfile.Location which match your criteria</h2>
+
+<br />
+
+@if (Model.FilteredList.Count > 0)
+{
+    <div class="table-responsive">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Day</th>
+                    <th>Date</th>
+                    <th>Time</th>
+                    <th>Wave Height</th>
+                    <th>Swell Direction</th>
+                    <th>Period</th>
+                    <th>Wind Speed</th>
+                    <th>Wind Direction</th>
+                </tr>
+            </thead>
+            <tbody>
+                @for (int i = 0; i < Model.FilteredList.Count(); i++)
+                {
+                    <tr>
+                        <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).DayOfWeek</td>
+
+                        <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).ToShortDateString()</td>
+
+                        <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).ToShortTimeString()</td>
+
+                        <td>
+                            @Model.FilteredList[i].Swell.GetAverageWaveHeight(Model.FilteredList[i].Swell.MinBreakingHeight,
+          Model.FilteredList[i].Swell.MaxBreakingHeight) @Model.FilteredList[i].Swell.Unit
+    </td>
+
+    <td>@Model.FilteredList[i].Swell.Components.Primary.CompassDirection</td>
+
+    <td>@Model.FilteredList[i].Swell.Components.Primary.Period</td>
+
+    <td>@Model.FilteredList[i].Wind.Speed @Model.FilteredList[i].Wind.Unit</td>
+
+    <td>@Model.FilteredList[i].Wind.CompassDirection</td>
+</tr>
+
+}
+            </tbody>
+        </table>
+    </div>
+
+
+}
+
+<div>
+    @if (Model.TempData["Message"] != null)
+    {@Model.TempData["Message"]}
+</div>
+
+
+<br />
+
 
 <h2>These are the members whose surf profiles are also a match over the coming 24 hours for @Model.SurfProfile.Location</h2>
 
@@ -91,62 +153,53 @@
 
 <br />
 
-<h2>Upcoming conditions for @Model.SurfProfile.Location which match your criteria</h2>
-
-<br />
-
-@if (Model.FilteredList.Count > 0)
+@if (Model.MyMessages.Count > 0)
 {
+    <h3>My Messages</h3>
+
     <div class="table-responsive">
+
         <table class="table">
+
             <thead>
                 <tr>
-                    <th>Day</th>
                     <th>Date</th>
                     <th>Time</th>
-                    <th>Wave Height</th>
-                    <th>Swell Direction</th>
-                    <th>Period</th>
-                    <th>Wind Speed</th>
-                    <th>Wind Direction</th>
+                    <th>Sender ID</th>
+                    <th>Message</th>
                 </tr>
             </thead>
+
             <tbody>
-                @for (int i = 0; i < Model.FilteredList.Count(); i++)
+
+                @for (int i = Model.MyMessages.Count - 1; i + 1 > 0; i--)
                 {
                     <tr>
-                        <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).DayOfWeek</td>
-
-                        <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).ToShortDateString()</td>
-
-                        <td>@Model.FilteredList[i].GetDate(Model.FilteredList[i].LocalTimestamp).ToShortTimeString()</td>
+                        <td>
+                            @Model.RootObjectList[0].GetDate(Model.MyMessages[i].MessageTime).ToShortDateString()
+                        </td>
 
                         <td>
-                            @Model.FilteredList[i].Swell.GetAverageWaveHeight(Model.FilteredList[i].Swell.MinBreakingHeight,
-          Model.FilteredList[i].Swell.MaxBreakingHeight) @Model.FilteredList[i].Swell.Unit
-    </td>
+                            @Model.RootObjectList[0].GetDate(Model.MyMessages[i].MessageTime).ToShortTimeString()
+                        </td>
 
-    <td>@Model.FilteredList[i].Swell.Components.Primary.CompassDirection</td>
+                        <td>
+                            @Model.MyMessages[i].SenderID
+                        </td>
 
-    <td>@Model.FilteredList[i].Swell.Components.Primary.Period</td>
+                        <td>
+                            @Model.MyMessages[i].MessageBody
+                        </td>
+                    </tr>
+                }
 
-    <td>@Model.FilteredList[i].Wind.Speed @Model.FilteredList[i].Wind.Unit</td>
-
-    <td>@Model.FilteredList[i].Wind.CompassDirection</td>
-</tr>
-
-}
             </tbody>
+
         </table>
+
     </div>
 
-
 }
-
-<div>
-    @if (Model.TempData["Message"] != null)
-    {@Model.TempData["Message"]}
-</div>
 
 
 @section scripts

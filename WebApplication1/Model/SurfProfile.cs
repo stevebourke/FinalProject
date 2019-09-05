@@ -56,7 +56,8 @@ namespace SurfProject.Model
 
 
 
-        //Custom validation - it is bound to Monday but will make sure that at least one checkbox is checked
+        //Custom validation - it is bound to Monday but will
+        //make sure that at least one checkbox is checked
         [DaysPicked]
         [Display(Name = "Monday")]
         public bool IsMondayChecked { get; set; }
