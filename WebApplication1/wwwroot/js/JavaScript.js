@@ -9,19 +9,19 @@ $(document).ready(function () {
     $("#btnPostMessage").click(function () {
 
         //convert from ms to seconds - taken from electrictoolbox.com
-        MessageTime = Math.round(Date.now() / 1000);
+        messageTime = Math.round(Date.now() / 1000);
 
-        SenderID = document.getElementById("senderMemberID").value;
+        senderID = document.getElementById("senderMemberID").value;
 
-        RecipientID = document.getElementById("selectedID").value;
+        recipientID = document.getElementById("selectedID").value;
 
-        MessageBody = document.getElementById("textMessage").value;
+        messageBody = document.getElementById("textMessage").value;
 
         $.ajax({
             type: 'POST',
             async: true,
-            url: "api/Messages?MessageID=1&MessageTime=" + MessageTime + "&SenderID="
-                + SenderID + "&RecipientID=" + RecipientID + "&MessageBody=" + MessageBody,
+            url: "api/Messages?MessageID=1&MessageTime=" + messageTime + "&SenderID="
+                + senderID + "&RecipientID=" + recipientID + "&MessageBody=" + messageBody,
             success: function (data) {
                 alert("Message was Sent")
             },
@@ -31,4 +31,5 @@ $(document).ready(function () {
         });
     });
 });
+
 

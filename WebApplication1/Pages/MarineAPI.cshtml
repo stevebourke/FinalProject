@@ -96,49 +96,56 @@
 
                     @for (int i = 0; i < Model.MembersList; i++)
                     {
-                        <td>Member ID</td>
+                        <th>Member ID</th>
                     }
 
                 </tr>
             </thead>
             <tbody>
 
-                @foreach (var keyValue in Model.PeersDictionary)
-                {
-                    //I use a random rootObject item to allow me to access GetDate method
+                    @foreach (var keyValue in Model.PeersDictionary)
+                    {
+                        //I use a random rootObject item to allow me to access GetDate method
 
                     <tr>
                         <td>
                             @Model.RootObjectList[0].GetDate(keyValue.Key).DayOfWeek
                         </td>
+
                         <td>
                             @Model.RootObjectList[0].GetDate(keyValue.Key).ToShortDateString()
                         </td>
+
                         <td>
                             @Model.RootObjectList[0].GetDate(keyValue.Key).ToShortTimeString()
                         </td>
+
+                       
                         @foreach (var profile in keyValue.Value)
                         {
                             <td>
                                 @profile.MemberID.ToString()
                             </td>
                         }
+
                     </tr>
-
                 }
-            </tbody>
-        </table>
-    </div>
 
-}
+                </tbody>
+            </table>
+        </div>
 
-@if (Model.DistinctMemberIDs.Count > 0)
+    }
+
+@if (Model.AllMembers.Count > 0)
 {
-    <select id="selectedID">
+    <label for="sendTo">Send To</label>
 
-        @for (int i = 0; i < Model.DistinctMemberIDs.Count; i++)
+    <select id="selectedID" name="sendTo">
+
+        @foreach (var m in Model.AllMembers)
         {
-            <option>@Model.DistinctMemberIDs[i]</option>
+            <option>@m.MemberID</option>
         }
 
     </select>
@@ -157,7 +164,8 @@
 {
     <h3>My Messages</h3>
 
-    <div class="table-responsive">
+
+    <div id="div1" class="table-responsive">
 
         <table class="table">
 
@@ -198,6 +206,8 @@
         </table>
 
     </div>
+
+
 
 }
 

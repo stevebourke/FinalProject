@@ -20,30 +20,31 @@ namespace SurfProject.Controllers
             _context = context;
         }
 
-        // GET: api/Messages
+
         [HttpGet]
-        public IEnumerable<Message> GetMessages()
+        public async Task<ActionResult<IEnumerable<Message>>> GetMessages()
         {
-            return _context.Messages;
+            return await _context.Messages.ToListAsync();
         }
+
 
         // GET: api/Messages/5
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMessage([FromRoute] int id)
+        public IEnumerable<Message> GetMessage([FromRoute]int myID)
         {
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            IEnumerable<Message> myMessages;
 
-            var message = await _context.Messages.FindAsync(id);
+            //if (senderID == -1)
+            
+                myMessages = _context.Messages.Where(x => x.RecipientID == myID);
+            
 
-            if (message == null)
-            {
-                return NotFound();
-            }
+            //else
+            //{
+            //    myMessages = _context.Messages.Where(x => x.RecipientID == myID && x.SenderID == senderID);
+            //}
 
-            return Ok(message);
+            return myMessages;
         }
 
         // PUT: api/Messages/5
@@ -84,22 +85,22 @@ namespace SurfProject.Controllers
 
         // POST: api/Messages
         [HttpPost]
-        public async Task<IActionResult> PostMessage([FromRoute] int MessageID, int MessageTime, int SenderID,
-            int RecipientID, string MessageBody)
+        public async Task<IActionResult> PostMessage([FromRoute] int messageID, int messageTime, int senderID,
+            int recipientID, string messageBody)
         {
 
             //Create a new message from the incoming parameters...
             Message postMessage = new Message()
             {
-                MessageID = MessageID,
+                MessageID = messageID,
 
-                MessageTime = MessageTime,
+                MessageTime = messageTime,
 
-                SenderID = SenderID,
+                SenderID = senderID,
 
-                RecipientID = RecipientID,
+                RecipientID = recipientID,
 
-                MessageBody = MessageBody
+                MessageBody = messageBody
             };
 
 

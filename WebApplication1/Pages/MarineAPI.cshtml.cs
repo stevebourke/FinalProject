@@ -48,6 +48,12 @@ namespace SurfProject.Pages
         public Message Message { get; set; }
 
 
+
+        [BindProperty]
+        public Member Member { get; set; }
+
+
+
         //This will be used to hold all messages sent to the current user
         public List<Message> MyMessages { get; set; }
 
@@ -55,6 +61,7 @@ namespace SurfProject.Pages
         
         //We need a list to store all of the forecasts that are sent back in a json array
         public List<RootObject> RootObjectList { get; set; }
+
 
 
         //This list will be used to hold the surf forecasts which match the criteria of a given surf profile
@@ -75,6 +82,11 @@ namespace SurfProject.Pages
         public List<int> DistinctMemberIDs { get; set; }
 
 
+        //A list of all members in the database - used to set up a messsaging function
+        public List<Member> AllMembers { get; set; }
+
+
+
         //On page loading...
         public async Task<IActionResult> OnGetAsync(int id)
         {
@@ -85,6 +97,7 @@ namespace SurfProject.Pages
             //This creates a list of all messages sent to this particular member
             MyMessages = _db.Messages.Where(x => x.RecipientID == SurfProfile.MemberID)
                 .Select(x => x).ToList();
+
 
 
             //This is ok here since I am only dealing with two locations - it could perhaps be moved
@@ -99,7 +112,17 @@ namespace SurfProject.Pages
             { loc = 1483; }
 
 
-            //Connect to the magicseaweed website from which we will get our json forecast data passing our API key and the location ID
+
+            Member member = await _db.Members.FindAsync(SurfProfile.MemberID);
+
+
+            //Get all the members in the database, but exclude the current member
+            AllMembers = _db.Members.Where(x => x.MemberID != SurfProfile.MemberID)
+                .Select(x => x).ToList();
+
+
+            //Connect to the magicseaweed website from which we will get 
+            //our json forecast data passing our API key and the location ID
             var client = _clientFactory.CreateClient();
 
             try
